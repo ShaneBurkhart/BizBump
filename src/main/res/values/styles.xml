@@ -1,0 +1,12 @@
+<resources >
+
+    <style name="AppBaseTheme">
+        <!-- API 10 and lower theme customizations can go here. -->
+    </style>
+
+    <style name="DrawerItemSelected">
+        <item name="android:background">@color/action_background</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+</resources>

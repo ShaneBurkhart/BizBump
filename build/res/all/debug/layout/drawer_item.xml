@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TextView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:text="Large Text"
+        android:id="@+id/textView"
+        android:layout_gravity="left|center_vertical"
+        android:textColor="#aaa"
+        android:gravity="center"
+        android:paddingTop="@dimen/drawer_item_vertical_margin"
+        android:paddingBottom="@dimen/drawer_item_vertical_margin"/><!-- From: file:/C:/Users/Shane/AndroidStudioProjects/BizBumpProject/BizBump/src/main/res/layout/drawer_item.xml -->

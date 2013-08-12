@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BizBump</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="drawer_items">
+        <item>My Cards</item>
+        <item>Share via Email</item>
+        <item>Share via Bluetooth</item>
+        <item>Share via QR Code</item>
+        <item>Turn On Hotspot</item>
+        <item>Settings</item>
+    </string-array>
+
+</resources>
