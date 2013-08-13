@@ -49,11 +49,11 @@ public class Find extends Fragment {
 
         @Override
         public void onClick(View view) {
-            Intent i = new Intent(getActivity(), getShareOptionActivityClass(view));
+            Intent i = new Intent(getActivity(), getFindOptionActivityClass(view));
             getActivity().startActivity(i);
         }
 
-        private Class getShareOptionActivityClass(View view){
+        private Class getFindOptionActivityClass(View view){
             switch (view.getId()){
                 case R.id.find_by_email:
                     return FindByEmailActivity.class;
