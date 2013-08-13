@@ -25,6 +25,7 @@
 
         <activity android:name=".controller.CardDetailsActivity"/>
         <activity android:name=".controller.ShareByEmailActivity"/>
+        <activity android:name=".controller.ShareByQRActivity"/>
 
     </application>
 

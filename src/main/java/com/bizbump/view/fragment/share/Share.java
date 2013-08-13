@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.bizbump.R;
 import com.bizbump.controller.MainActivity;
 import com.bizbump.controller.ShareByEmailActivity;
+import com.bizbump.controller.ShareByQRActivity;
 import com.bizbump.utils.FontUtils;
 
 /**
@@ -56,7 +57,7 @@ public class Share extends Fragment {
                 case R.id.share_by_email:
                     return ShareByEmailActivity.class;
                 case R.id.share_by_qr_code:
-                    return ShareByEmailActivity.class;
+                    return ShareByQRActivity.class;
                 case R.id.share_by_bluetooth:
                     return ShareByEmailActivity.class;
                 default:

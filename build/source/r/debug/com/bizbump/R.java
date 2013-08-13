@@ -968,22 +968,22 @@ containing a value of this type.
         public static final int action_bar_root=0x7f08001d;
         public static final int action_bar_subtitle=0x7f080026;
         public static final int action_bar_title=0x7f080025;
-        public static final int action_call=0x7f080059;
+        public static final int action_call=0x7f08005c;
         public static final int action_context_bar=0x7f080020;
-        public static final int action_email=0x7f08005a;
+        public static final int action_email=0x7f08005d;
         public static final int action_menu_divider=0x7f08001a;
         public static final int action_menu_presenter=0x7f08001b;
         public static final int action_mode_bar=0x7f080034;
         public static final int action_mode_bar_stub=0x7f080033;
         public static final int action_mode_close_button=0x7f080027;
-        public static final int action_search=0x7f08005c;
-        public static final int action_share=0x7f08005b;
-        public static final int action_share_me=0x7f08005d;
+        public static final int action_search=0x7f08005f;
+        public static final int action_share=0x7f08005e;
+        public static final int action_share_me=0x7f080060;
         public static final int activity_chooser_view_content=0x7f080028;
         public static final int always=0x7f08000f;
         public static final int auto=0x7f080012;
         public static final int beginning=0x7f08000a;
-        public static final int blutooth_icon=0x7f080058;
+        public static final int blutooth_icon=0x7f08005b;
         public static final int bottom=0x7f080016;
         public static final int checkbox=0x7f080030;
         public static final int collapseActionView=0x7f080011;
@@ -996,7 +996,7 @@ containing a value of this type.
         public static final int dropdown=0x7f080018;
         public static final int edit_query=0x7f08003b;
         public static final int email=0x7f08004d;
-        public static final int email_icon=0x7f080054;
+        public static final int email_icon=0x7f080057;
         public static final int end=0x7f08000c;
         public static final int expand_activities_button=0x7f080029;
         public static final int expanded_menu=0x7f08002f;
@@ -1019,7 +1019,7 @@ containing a value of this type.
         public static final int phone_number=0x7f08004c;
         public static final int progress_circular=0x7f080039;
         public static final int progress_horizontal=0x7f08003a;
-        public static final int qr_icon=0x7f080056;
+        public static final int qr_icon=0x7f080059;
         public static final int radio=0x7f080032;
         public static final int right=0x7f080013;
         public static final int right_container=0x7f080037;
@@ -1034,10 +1034,13 @@ containing a value of this type.
         public static final int search_plate=0x7f080041;
         public static final int search_src_text=0x7f080042;
         public static final int search_voice_btn=0x7f080046;
-        public static final int share_by_bluetooth=0x7f080057;
-        public static final int share_by_email=0x7f080053;
-        public static final int share_by_qr_code=0x7f080055;
-        public static final int share_options_list=0x7f080052;
+        public static final int share_by_bluetooth=0x7f08005a;
+        public static final int share_by_email=0x7f080056;
+        public static final int share_by_qr_code=0x7f080058;
+        public static final int share_email_text=0x7f080052;
+        public static final int share_options_list=0x7f080055;
+        public static final int share_qr_code_image=0x7f080054;
+        public static final int share_send_email=0x7f080053;
         public static final int shortcut=0x7f080031;
         public static final int showCustom=0x7f080007;
         public static final int showHome=0x7f080004;
@@ -1093,8 +1096,9 @@ containing a value of this type.
         public static final int cards_list=0x7f03001b;
         public static final int drawer_item=0x7f03001c;
         public static final int share_by_email=0x7f03001d;
-        public static final int share_options=0x7f03001e;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001f;
+        public static final int share_by_qr=0x7f03001e;
+        public static final int share_options=0x7f03001f;
+        public static final int support_simple_spinner_dropdown_item=0x7f030020;
     }
     public static final class menu {
         public static final int details_actions=0x7f0d0000;
