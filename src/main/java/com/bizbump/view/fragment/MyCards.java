@@ -18,6 +18,8 @@ import android.view.ViewGroup;
 import android.graphics.Color;
 import android.widget.AdapterView;
 
+import java.util.ArrayList;
+
 /**
  * Created by Shane on 8/5/13.
  */
@@ -36,13 +38,16 @@ public class MyCards extends ListFragment {
         new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
         new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
         new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
-        new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
+        new Card("a", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
         new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813")
     };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        this.setListAdapter(new CardsAdapter(this.getActivity(), R.layout.card_item, cards));
+        ArrayList<Object> obj = new ArrayList<Object>();
+        for(int i = 0 ; i < cards.length ; i ++)
+            obj.add(i, cards[i]);
+        this.setListAdapter(new CardsAdapter(this.getActivity(), obj));
         return inflater.inflate(R.layout.cards_list, container, false);
     }
 
@@ -73,8 +78,10 @@ public class MyCards extends ListFragment {
     private class CardClickListener implements AdapterView.OnItemClickListener{
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            Intent intent = new Intent(getActivity(), CardDetailsActivity.class);
-            getActivity().startActivity(intent);
+            if(adapterView.getAdapter().getItemViewType(i) == CardsAdapter.CARD){
+                Intent intent = new Intent(getActivity(), CardDetailsActivity.class);
+                getActivity().startActivity(intent);
+            }
         }
     }
 }
