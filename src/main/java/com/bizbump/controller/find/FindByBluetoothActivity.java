@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 
 import com.bizbump.R;
+import com.bizbump.view.fragment.find.FindByBluetooth;
 import com.bizbump.view.fragment.share.ShareByQR;
 
 /**
@@ -25,9 +26,11 @@ public class FindByBluetoothActivity extends ActionBarActivity{
             if(savedInstanceState != null){
                 return;
             }
-            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new ShareByQR()).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new FindByBluetooth()).commit();
         }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        setTitle("Find By Bluetooth");
     }
 
     @Override

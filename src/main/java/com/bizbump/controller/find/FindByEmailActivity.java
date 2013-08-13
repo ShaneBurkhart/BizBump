@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 
 import com.bizbump.R;
+import com.bizbump.view.fragment.find.FindByEmail;
 import com.bizbump.view.fragment.share.ShareByQR;
 
 /**
@@ -24,9 +25,11 @@ public class FindByEmailActivity extends ActionBarActivity {
             if(savedInstanceState != null){
                 return;
             }
-            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new ShareByQR()).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new FindByEmail()).commit();
         }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        setTitle("Find By Email");
     }
 
     @Override
