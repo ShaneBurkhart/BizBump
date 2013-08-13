@@ -1097,7 +1097,8 @@ containing a value of this type.
     }
     public static final class menu {
         public static final int details_actions=0x7f0d0000;
-        public static final int home_actions=0x7f0d0001;
+        public static final int my_cards=0x7f0d0001;
+        public static final int none=0x7f0d0002;
     }
     public static final class string {
         public static final int abc_action_bar_home_description=0x7f0b0000;

@@ -1,6 +1,7 @@
 package com.bizbump.view.fragment;
 
 import com.bizbump.controller.CardDetailsActivity;
+import com.bizbump.controller.MainActivity;
 import com.bizbump.model.Card;
 import com.bizbump.view.adapter.CardsAdapter;
 
@@ -10,6 +11,7 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +21,7 @@ import android.widget.AdapterView;
 /**
  * Created by Shane on 8/5/13.
  */
-public class CardsList extends ListFragment {
+public class MyCards extends ListFragment {
 
     Card[] cards = new Card[] {
         new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
@@ -50,6 +52,16 @@ public class CardsList extends ListFragment {
         this.getListView().setDivider(new ColorDrawable(Color.TRANSPARENT));
         this.getListView().setDividerHeight(10);
         this.getListView().setOnItemClickListener(new CardClickListener());
+
+        //Set state and invalidate
+        MainActivity activity = (MainActivity) getActivity();
+        activity.actionBarState = MainActivity.MY_CARDS;
+        activity.supportInvalidateOptionsMenu();
+
+        //Set other action bar attrs
+        ActionBar actionBar = activity.getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
 
         super.onViewCreated(view, savedInstanceState);
     }

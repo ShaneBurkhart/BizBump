@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,7 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.bizbump.R;
-import com.bizbump.view.fragment.CardsList;
+import com.bizbump.view.fragment.MyCards;
 import com.bizbump.view.fragment.Settings;
 import com.bizbump.view.fragment.find.FindByEmail;
 import com.bizbump.view.fragment.find.FindNearMe;
@@ -25,6 +24,10 @@ import com.bizbump.view.fragment.find.FindByQR;
 import com.bizbump.view.fragment.share.Share;
 
 public class MainActivity extends ActionBarActivity {
+
+    public static final int NONE = 0x0;
+    public static final int MY_CARDS = 0x1;
+    public int actionBarState = NONE;
 
     ActionBarDrawerToggle drawerToggle;
     ListView drawerList;
@@ -45,10 +48,6 @@ public class MainActivity extends ActionBarActivity {
         drawerToggle = new ActionBarDrawerToggle(this, drawer, R.drawable.ic_navigation_drawer, R.drawable.ic_navigation_drawer, R.drawable.ic_navigation_drawer);
         drawer.setDrawerListener(drawerToggle);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeButtonEnabled(true);
-
         //Check if container exists
         if(findViewById(R.id.fragment_container) != null){
             //Now add some fragment.
@@ -56,8 +55,7 @@ public class MainActivity extends ActionBarActivity {
             if(savedInstanceState != null){
                 return;
             }
-
-            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new CardsList()).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new MyCards()).commit();
         }
     }
 
@@ -93,7 +91,19 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.home_actions, menu);
+        int id;
+        switch (actionBarState) {
+            case NONE:
+                id = R.menu.none;
+                break;
+            case MY_CARDS:
+                id = R.menu.my_cards;
+                break;
+            default:
+                id = R.id.none;
+                break;
+        }
+        inflater.inflate(id, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -116,7 +126,7 @@ public class MainActivity extends ActionBarActivity {
     private Fragment getFragmentFromPosition(int pos){
         switch (pos){
             case 0:
-                return new CardsList();
+                return new MyCards();
             case 1:
                 return new FindByQR();
             case 2:
@@ -128,7 +138,7 @@ public class MainActivity extends ActionBarActivity {
             case 5:
                 return new Settings();
             default:
-                return new CardsList();
+                return new MyCards();
         }
     }
 }

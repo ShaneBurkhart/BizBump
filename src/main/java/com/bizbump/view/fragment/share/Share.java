@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bizbump.R;
+import com.bizbump.controller.MainActivity;
 import com.bizbump.utils.FontUtils;
 
 /**
@@ -31,6 +32,10 @@ public class Share extends Fragment {
         ((TextView) v.findViewById(R.id.email_icon)).setTypeface(font);
         ((TextView) v.findViewById(R.id.blutooth_icon)).setTypeface(font);
         ((TextView) v.findViewById(R.id.qr_icon)).setTypeface(font);
+
+        MainActivity activity = (MainActivity) getActivity();
+        activity.actionBarState = MainActivity.NONE;
+        activity.supportInvalidateOptionsMenu();
 
         return v;
     }

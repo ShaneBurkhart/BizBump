@@ -386,7 +386,8 @@ int layout drawer_item 0x7f03001c
 int layout share_options 0x7f03001d
 int layout support_simple_spinner_dropdown_item 0x7f03001e
 int menu details_actions 0x7f0d0000
-int menu home_actions 0x7f0d0001
+int menu my_cards 0x7f0d0001
+int menu none 0x7f0d0002
 int string abc_action_bar_home_description 0x7f0b0000
 int string abc_action_bar_up_description 0x7f0b0001
 int string abc_action_menu_overflow_description 0x7f0b0002
