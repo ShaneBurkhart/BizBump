@@ -1092,8 +1092,9 @@ containing a value of this type.
         public static final int card_item=0x7f03001a;
         public static final int cards_list=0x7f03001b;
         public static final int drawer_item=0x7f03001c;
-        public static final int share_options=0x7f03001d;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001e;
+        public static final int share_by_email=0x7f03001d;
+        public static final int share_options=0x7f03001e;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001f;
     }
     public static final class menu {
         public static final int details_actions=0x7f0d0000;

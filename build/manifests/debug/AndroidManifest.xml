@@ -12,6 +12,7 @@
         </activity>
 
         <activity android:name="com.bizbump.controller.CardDetailsActivity"/>
+        <activity android:name="com.bizbump.controller.ShareByEmailActivity"/>
 
     </application>
 

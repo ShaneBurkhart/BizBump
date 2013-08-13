@@ -1,6 +1,8 @@
 package com.bizbump.view.fragment.share;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 
 import com.bizbump.R;
 import com.bizbump.controller.MainActivity;
+import com.bizbump.controller.ShareByEmailActivity;
 import com.bizbump.utils.FontUtils;
 
 /**
@@ -44,23 +47,20 @@ public class Share extends Fragment {
 
         @Override
         public void onClick(View view) {
-            FragmentActivity fa = (FragmentActivity) getActivity();
-            fa.getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, getShareOptionFragment(view))
-                    .commit();
+            Intent i = new Intent(getActivity(), getShareOptionActivityClass(view));
+            getActivity().startActivity(i);
         }
 
-        private Fragment getShareOptionFragment(View view){
+        private Class getShareOptionActivityClass(View view){
             switch (view.getId()){
                 case R.id.share_by_email:
-                    return new ShareByEmail();
+                    return ShareByEmailActivity.class;
                 case R.id.share_by_qr_code:
-                    return new ShareByQR();
+                    return ShareByEmailActivity.class;
                 case R.id.share_by_bluetooth:
-                    return new ShareByBluetooth();
+                    return ShareByEmailActivity.class;
                 default:
-                    return new ShareByEmail();
+                    return ShareByEmailActivity.class;
             }
         }
     }
