@@ -17,7 +17,7 @@ public class FindByBluetoothActivity extends ActionBarActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.general_container);
 
         //Check if container exists
         if(findViewById(R.id.fragment_container) != null){
