@@ -6,11 +6,15 @@
 
     <string-array name="drawer_items">
         <item>My Cards</item>
-        <item>Share via Email</item>
-        <item>Share via Bluetooth</item>
-        <item>Share via QR Code</item>
-        <item>Turn On Hotspot</item>
+        <item>Scan QR Code</item>
+        <item>Find By Email</item>
+        <item>Find Near Me</item>
+        <item>Share My Card</item>
         <item>Settings</item>
     </string-array>
+
+    <string name="icon_qr">&#xF029;</string>
+    <string name="icon_bluetooth">&#xF0C2;</string>
+    <string name="icon_email">&#xF0E0;</string>
 
 </resources>

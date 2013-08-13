@@ -809,7 +809,7 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f060005;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f07000a;
+        public static final int abc_search_url_text_holo=0x7f07000b;
         public static final int abc_search_url_text_normal=0x7f070000;
         public static final int abc_search_url_text_pressed=0x7f070001;
         public static final int abc_search_url_text_selected=0x7f070002;
@@ -821,7 +821,8 @@ containing a value of this type.
         public static final int app_background=0x7f070006;
         public static final int card_background=0x7f070007;
         public static final int card_border=0x7f070008;
-        public static final int drawer_background=0x7f070009;
+        public static final int dark_gray=0x7f070009;
+        public static final int drawer_background=0x7f07000a;
     }
     public static final class dimen {
         /**  From: file:/C:/Users/Shane/AndroidStudioProjects/BizBumpProject/BizBump/build/exploded-bundles/ComAndroidSupportAppcompatV71800.aar/res/values-w600dp/values.xml 
@@ -967,20 +968,22 @@ containing a value of this type.
         public static final int action_bar_root=0x7f08001d;
         public static final int action_bar_subtitle=0x7f080026;
         public static final int action_bar_title=0x7f080025;
-        public static final int action_call=0x7f080052;
+        public static final int action_call=0x7f080059;
         public static final int action_context_bar=0x7f080020;
-        public static final int action_email=0x7f080053;
+        public static final int action_email=0x7f08005a;
         public static final int action_menu_divider=0x7f08001a;
         public static final int action_menu_presenter=0x7f08001b;
         public static final int action_mode_bar=0x7f080034;
         public static final int action_mode_bar_stub=0x7f080033;
         public static final int action_mode_close_button=0x7f080027;
-        public static final int action_search=0x7f080055;
-        public static final int action_share=0x7f080054;
+        public static final int action_search=0x7f08005c;
+        public static final int action_share=0x7f08005b;
+        public static final int action_share_me=0x7f08005d;
         public static final int activity_chooser_view_content=0x7f080028;
         public static final int always=0x7f08000f;
         public static final int auto=0x7f080012;
         public static final int beginning=0x7f08000a;
+        public static final int blutooth_icon=0x7f080058;
         public static final int bottom=0x7f080016;
         public static final int checkbox=0x7f080030;
         public static final int collapseActionView=0x7f080011;
@@ -993,6 +996,7 @@ containing a value of this type.
         public static final int dropdown=0x7f080018;
         public static final int edit_query=0x7f08003b;
         public static final int email=0x7f08004d;
+        public static final int email_icon=0x7f080054;
         public static final int end=0x7f08000c;
         public static final int expand_activities_button=0x7f080029;
         public static final int expanded_menu=0x7f08002f;
@@ -1015,6 +1019,7 @@ containing a value of this type.
         public static final int phone_number=0x7f08004c;
         public static final int progress_circular=0x7f080039;
         public static final int progress_horizontal=0x7f08003a;
+        public static final int qr_icon=0x7f080056;
         public static final int radio=0x7f080032;
         public static final int right=0x7f080013;
         public static final int right_container=0x7f080037;
@@ -1029,6 +1034,10 @@ containing a value of this type.
         public static final int search_plate=0x7f080041;
         public static final int search_src_text=0x7f080042;
         public static final int search_voice_btn=0x7f080046;
+        public static final int share_by_bluetooth=0x7f080057;
+        public static final int share_by_email=0x7f080053;
+        public static final int share_by_qr_code=0x7f080055;
+        public static final int share_options_list=0x7f080052;
         public static final int shortcut=0x7f080031;
         public static final int showCustom=0x7f080007;
         public static final int showHome=0x7f080004;
@@ -1083,7 +1092,8 @@ containing a value of this type.
         public static final int card_item=0x7f03001a;
         public static final int cards_list=0x7f03001b;
         public static final int drawer_item=0x7f03001c;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001d;
+        public static final int share_options=0x7f03001d;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001e;
     }
     public static final class menu {
         public static final int details_actions=0x7f0d0000;
@@ -1107,6 +1117,9 @@ containing a value of this type.
          */
         public static final int action_settings=0x7f0b000d;
         public static final int app_name=0x7f0b000e;
+        public static final int icon_bluetooth=0x7f0b000f;
+        public static final int icon_email=0x7f0b0010;
+        public static final int icon_qr=0x7f0b0011;
     }
     public static final class style {
         /**  From: file:/C:/Users/Shane/AndroidStudioProjects/BizBumpProject/BizBump/src/main/res/values/styles.xml 

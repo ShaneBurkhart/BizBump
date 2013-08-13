@@ -4,10 +4,10 @@
     <!-- From: file:/C:/Users/Shane/AndroidStudioProjects/BizBumpProject/BizBump/src/main/res/values/strings.xml -->
     <string-array name="drawer_items">
         <item>My Cards</item>
-        <item>Share via Email</item>
-        <item>Share via Bluetooth</item>
-        <item>Share via QR Code</item>
-        <item>Turn On Hotspot</item>
+        <item>Scan QR Code</item>
+        <item>Find By Email</item>
+        <item>Find Near Me</item>
+        <item>Share My Card</item>
         <item>Settings</item>
     </string-array>
     <!-- From: file:/C:/Users/Shane/AndroidStudioProjects/BizBumpProject/BizBump/build/exploded-bundles/ComAndroidSupportAppcompatV71800.aar/res/values/values.xml -->
@@ -92,6 +92,7 @@
     <color name="app_background">#ffdddddd</color>
     <color name="card_background">#fff5f5f5</color>
     <color name="card_border">#ffaaaaaa</color>
+    <color name="dark_gray">#ff888888</color>
     <color name="drawer_background">#ff00598c</color>
     <!-- From: file:/C:/Users/Shane/AndroidStudioProjects/BizBumpProject/BizBump/build/exploded-bundles/ComAndroidSupportAppcompatV71800.aar/res/values/values.xml -->
     <declare-styleable name="ActionBar">
@@ -541,6 +542,9 @@
     <!-- From: file:/C:/Users/Shane/AndroidStudioProjects/BizBumpProject/BizBump/src/main/res/values/strings.xml -->
     <string name="action_settings">Settings</string>
     <string name="app_name">BizBump</string>
+    <string name="icon_bluetooth"></string>
+    <string name="icon_email"></string>
+    <string name="icon_qr"></string>
     <!-- From: file:/C:/Users/Shane/AndroidStudioProjects/BizBumpProject/BizBump/src/main/res/values/styles.xml -->
     <style name="AppBaseTheme">
         <!-- API 10 and lower theme customizations can go here. -->

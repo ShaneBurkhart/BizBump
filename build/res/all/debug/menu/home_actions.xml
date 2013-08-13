@@ -8,4 +8,8 @@
           android:title="Search"
           bizbump:showAsAction="always" />
 
+    <item android:id="@+id/action_share_me"
+          android:icon="@drawable/social_share"
+          android:title="Share"
+          bizbump:showAsAction="always" />
 </menu><!-- From: file:/C:/Users/Shane/AndroidStudioProjects/BizBumpProject/BizBump/src/main/res/menu/home_actions.xml -->

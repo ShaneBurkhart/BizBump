@@ -23,16 +23,12 @@ import com.bizbump.utils.GravatarUtils;
  */
 public class CardsAdapter extends ArrayAdapter<Card> {
 
-    public CardsAdapter(Context context, int textViewResourceId) {
-        super(context, textViewResourceId);
+    public CardsAdapter(Context context, int resource, Card[] objects) {
+        super(context, resource, 0, objects);
     }
 
-    public CardsAdapter(Context context, int resource, int textViewResourceId, Card[] objects) {
-        super(context, resource, textViewResourceId, objects);
-    }
-
-    public CardsAdapter(Context context, int resource, int textViewResourceId, List<Card> objects) {
-        super(context, resource, textViewResourceId, objects);
+    public CardsAdapter(Context context, int resource, List<Card> objects) {
+        super(context, resource, 0, objects);
     }
 
     @Override

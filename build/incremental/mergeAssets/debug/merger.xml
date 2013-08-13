@@ -5,7 +5,11 @@
         <source path="C:\Users\Shane\AndroidStudioProjects\BizBumpProject\BizBump\build\exploded-bundles\ComAndroidSupportAppcompatV71800.aar\assets" />
     </dataSet>
     <dataSet config="main" >
-        <source path="C:\Users\Shane\AndroidStudioProjects\BizBumpProject\BizBump\src\main\assets" />
+        <source path="C:\Users\Shane\AndroidStudioProjects\BizBumpProject\BizBump\src\main\assets" >
+            <file
+                name="icon-font.ttf"
+                path="C:\Users\Shane\AndroidStudioProjects\BizBumpProject\BizBump\src\main\assets\icon-font.ttf" />
+        </source>
     </dataSet>
     <dataSet config="debug" >
         <source path="C:\Users\Shane\AndroidStudioProjects\BizBumpProject\BizBump\src\debug\assets" />

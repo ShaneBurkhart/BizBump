@@ -11,4 +11,6 @@
 
     <color name="drawer_background">#ff00598c</color>
 
+    <color name="dark_gray">#ff888888</color>
+
 </resources>

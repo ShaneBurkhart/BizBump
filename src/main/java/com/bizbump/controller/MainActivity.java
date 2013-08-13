@@ -1,31 +1,34 @@
 package com.bizbump.controller;
 
-import java.lang.reflect.Field;
-
 import android.content.res.Configuration;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.ViewConfiguration;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.bizbump.R;
 import com.bizbump.view.fragment.CardsList;
+import com.bizbump.view.fragment.Settings;
+import com.bizbump.view.fragment.find.FindByEmail;
+import com.bizbump.view.fragment.find.FindNearMe;
+import com.bizbump.view.fragment.find.FindByQR;
+import com.bizbump.view.fragment.share.Share;
 
 public class MainActivity extends ActionBarActivity {
 
     ActionBarDrawerToggle drawerToggle;
     ListView drawerList;
+    DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +37,10 @@ public class MainActivity extends ActionBarActivity {
 
         //Set up drawer menu
         String[] drawerItems = getResources().getStringArray(R.array.drawer_items);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerList = (ListView) findViewById(R.id.drawer_list);
         drawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_item, drawerItems));
+        drawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         drawerToggle = new ActionBarDrawerToggle(this, drawer, R.drawable.ic_navigation_drawer, R.drawable.ic_navigation_drawer, R.drawable.ic_navigation_drawer);
         drawer.setDrawerListener(drawerToggle);
@@ -68,6 +72,7 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     protected void onResume() {
+        //Not going to work here since this is called every time activity opens
         /*drawerList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         TextView item = (TextView) drawerList.getChildAt(0);
         if(item != null){
@@ -99,4 +104,31 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private class DrawerItemClickListener implements OnItemClickListener{
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            Fragment frag = getFragmentFromPosition(i);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, frag).commit();
+            drawer.closeDrawers();
+        }
+    }
+
+    private Fragment getFragmentFromPosition(int pos){
+        switch (pos){
+            case 0:
+                return new CardsList();
+            case 1:
+                return new FindByQR();
+            case 2:
+                return new FindByEmail();
+            case 3:
+                return new FindNearMe();
+            case 4:
+                return new Share();
+            case 5:
+                return new Settings();
+            default:
+                return new CardsList();
+        }
+    }
 }

@@ -4462,6 +4462,8 @@ false
                 </color>
                 <color name="action_background" >#ff0595ff
                 </color>
+                <color name="dark_gray" >#ff888888
+                </color>
                 <color name="card_background" >#fff5f5f5
                 </color>
             </file>
@@ -4523,6 +4525,8 @@ false
                 qualifiers="" >
                 <string name="action_settings" >Settings
                 </string>
+                <string name="icon_qr" >
+                </string>
                 <string name="app_name" >BizBump
                 </string>
 
@@ -4531,21 +4535,26 @@ false
 My Cards
                     </item>
                     <item>
-Share via Email
+Scan QR Code
                     </item>
                     <item>
-Share via Bluetooth
+Find By Email
                     </item>
                     <item>
-Share via QR Code
+Find Near Me
                     </item>
                     <item>
-Turn On Hotspot
+Share My Card
                     </item>
                     <item>
 Settings
                     </item>
                 </string-array>
+
+                <string name="icon_email" >
+                </string>
+                <string name="icon_bluetooth" >
+                </string>
             </file>
             <file
                 path="C:\Users\Shane\AndroidStudioProjects\BizBumpProject\BizBump\src\main\res\values\styles.xml"
@@ -4628,6 +4637,11 @@ Settings
                 path="C:\Users\Shane\AndroidStudioProjects\BizBumpProject\BizBump\src\main\res\drawable-xhdpi\device_access_call.png"
                 qualifiers="xhdpi"
                 type="drawable" />
+            <file
+                name="share_options"
+                path="C:\Users\Shane\AndroidStudioProjects\BizBumpProject\BizBump\src\main\res\layout\share_options.xml"
+                qualifiers=""
+                type="layout" />
         </source>
         <source path="C:\Users\Shane\AndroidStudioProjects\BizBumpProject\BizBump\build\res\rs\debug" />
     </dataSet>

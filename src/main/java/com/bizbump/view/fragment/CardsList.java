@@ -40,7 +40,7 @@ public class CardsList extends ListFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        this.setListAdapter(new CardsAdapter(this.getActivity(), R.layout.card_item, R.id.email, cards));
+        this.setListAdapter(new CardsAdapter(this.getActivity(), R.layout.card_item, cards));
         return inflater.inflate(R.layout.cards_list, container, false);
     }
 
