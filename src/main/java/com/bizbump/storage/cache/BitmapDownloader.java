@@ -1,4 +1,4 @@
-package com.bizbump.cache;
+package com.bizbump.storage.cache;
 
 import java.io.IOException;
 import java.io.InputStream;

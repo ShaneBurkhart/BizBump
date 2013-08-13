@@ -13,8 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bizbump.R;
-import com.bizbump.cache.BitmapDownloader;
-import com.bizbump.cache.MemoryCache;
+import com.bizbump.storage.cache.BitmapDownloader;
+import com.bizbump.storage.cache.MemoryCache;
 import com.bizbump.model.Card;
 import com.bizbump.utils.GravatarUtils;
 

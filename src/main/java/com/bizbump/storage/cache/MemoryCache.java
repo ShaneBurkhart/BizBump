@@ -1,4 +1,4 @@
-package com.bizbump.cache;
+package com.bizbump.storage.cache;
 
 import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;
