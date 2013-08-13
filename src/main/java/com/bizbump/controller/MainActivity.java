@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.bizbump.R;
+import com.bizbump.view.adapter.DrawerAdapter;
 import com.bizbump.view.fragment.MyCards;
 import com.bizbump.view.fragment.Settings;
 import com.bizbump.view.fragment.find.Find;
@@ -43,11 +44,13 @@ public class MainActivity extends ActionBarActivity {
         String[] drawerItems = getResources().getStringArray(R.array.drawer_items);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerList = (ListView) findViewById(R.id.drawer_list);
-        drawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_item, drawerItems));
+        drawerList.setAdapter(new DrawerAdapter(this, drawerItems));
         drawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         drawerToggle = new ActionBarDrawerToggle(this, drawer, R.drawable.ic_navigation_drawer, R.drawable.ic_navigation_drawer, R.drawable.ic_navigation_drawer);
         drawer.setDrawerListener(drawerToggle);
+
+        drawerList.setItemChecked(0, true);
 
         //Check if container exists
         if(findViewById(R.id.fragment_container) != null){
@@ -118,6 +121,7 @@ public class MainActivity extends ActionBarActivity {
     private class DrawerItemClickListener implements OnItemClickListener{
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            drawerList.setSelection(i);
             Fragment frag = getFragmentFromPosition(i);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, frag).commit();
             drawer.closeDrawers();
