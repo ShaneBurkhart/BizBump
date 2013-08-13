@@ -1,19 +1,16 @@
-package com.bizbump.controller;
+package com.bizbump.controller.find;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.bizbump.R;
-import com.bizbump.view.fragment.CardDetails;
-import com.bizbump.view.fragment.share.ShareByEmail;
+import com.bizbump.view.fragment.share.ShareByQR;
 
 /**
- * Created by Shane on 8/8/13.
+ * Created by Shane on 8/12/13.
  */
-public class ShareByEmailActivity extends ActionBarActivity {
+public class FindByEmailActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +24,7 @@ public class ShareByEmailActivity extends ActionBarActivity {
             if(savedInstanceState != null){
                 return;
             }
-            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new ShareByEmail()).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new ShareByQR()).commit();
         }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }

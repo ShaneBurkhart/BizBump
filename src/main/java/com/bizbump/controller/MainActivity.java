@@ -18,6 +18,7 @@ import android.widget.ListView;
 import com.bizbump.R;
 import com.bizbump.view.fragment.MyCards;
 import com.bizbump.view.fragment.Settings;
+import com.bizbump.view.fragment.find.Find;
 import com.bizbump.view.fragment.find.FindByEmail;
 import com.bizbump.view.fragment.find.FindNearMe;
 import com.bizbump.view.fragment.find.FindByQR;
@@ -128,14 +129,10 @@ public class MainActivity extends ActionBarActivity {
             case 0:
                 return new MyCards();
             case 1:
-                return new FindByQR();
-            case 2:
-                return new FindByEmail();
-            case 3:
-                return new FindNearMe();
-            case 4:
                 return new Share();
-            case 5:
+            case 2:
+                return new Find();
+            case 3:
                 return new Settings();
             default:
                 return new MyCards();

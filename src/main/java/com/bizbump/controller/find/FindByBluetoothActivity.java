@@ -1,18 +1,17 @@
-package com.bizbump.controller;
+package com.bizbump.controller.find;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 
 import com.bizbump.R;
-import com.bizbump.view.fragment.share.ShareByEmail;
 import com.bizbump.view.fragment.share.ShareByQR;
 
 /**
- * Created by Shane on 8/12/13.
+ * Created by Shane on 8/13/13.
  */
-public class ShareByQRActivity extends ActionBarActivity {
+public class FindByBluetoothActivity extends ActionBarActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,5 +40,4 @@ public class ShareByQRActivity extends ActionBarActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

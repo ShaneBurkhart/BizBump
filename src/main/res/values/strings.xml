@@ -6,10 +6,8 @@
 
     <string-array name="drawer_items">
         <item>My Cards</item>
-        <item>Scan QR Code</item>
-        <item>Find By Email</item>
-        <item>Find Near Me</item>
-        <item>Share My Card</item>
+        <item>Share</item>
+        <item>Find</item>
         <item>Settings</item>
     </string-array>
 

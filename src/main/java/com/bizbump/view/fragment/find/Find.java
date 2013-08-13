@@ -1,4 +1,4 @@
-package com.bizbump.view.fragment.share;
+package com.bizbump.view.fragment.find;
 
 
 import android.content.Intent;
@@ -12,23 +12,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bizbump.R;
+import com.bizbump.controller.find.FindByBluetoothActivity;
+import com.bizbump.controller.find.FindByEmailActivity;
+import com.bizbump.controller.find.FindByQRActivity;
 import com.bizbump.controller.MainActivity;
-import com.bizbump.controller.share.ShareByEmailActivity;
-import com.bizbump.controller.share.ShareByQRActivity;
 import com.bizbump.utils.FontUtils;
 
 /**
  * Created by Shane on 8/12/13.
  */
-public class Share extends Fragment {
+public class Find extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        LinearLayout v =  (LinearLayout) inflater.inflate(R.layout.share_options, container, false);
+        LinearLayout v =  (LinearLayout) inflater.inflate(R.layout.find_options, container, false);
 
-        v.findViewById(R.id.share_by_email).setOnClickListener(new ShareItemClickListener());
-        v.findViewById(R.id.share_by_qr_code).setOnClickListener(new ShareItemClickListener());
-        v.findViewById(R.id.share_by_bluetooth).setOnClickListener(new ShareItemClickListener());
+        v.findViewById(R.id.find_by_email).setOnClickListener(new FindItemClickListener());
+        v.findViewById(R.id.find_by_qr_code).setOnClickListener(new FindItemClickListener());
+        v.findViewById(R.id.find_by_bluetooth).setOnClickListener(new FindItemClickListener());
 
         Typeface font = FontUtils.getIconFont(getActivity());
         ((TextView) v.findViewById(R.id.email_icon)).setTypeface(font);
@@ -39,12 +40,12 @@ public class Share extends Fragment {
         activity.actionBarState = MainActivity.NONE;
         activity.supportInvalidateOptionsMenu();
 
-        activity.setTitle("Share");
+        activity.setTitle("Find");
 
         return v;
     }
 
-    private class ShareItemClickListener implements View.OnClickListener{
+    private class FindItemClickListener implements View.OnClickListener{
 
         @Override
         public void onClick(View view) {
@@ -54,14 +55,14 @@ public class Share extends Fragment {
 
         private Class getShareOptionActivityClass(View view){
             switch (view.getId()){
-                case R.id.share_by_email:
-                    return ShareByEmailActivity.class;
-                case R.id.share_by_qr_code:
-                    return ShareByQRActivity.class;
-                case R.id.share_by_bluetooth:
-                    return ShareByEmailActivity.class;
+                case R.id.find_by_email:
+                    return FindByEmailActivity.class;
+                case R.id.find_by_qr_code:
+                    return FindByQRActivity.class;
+                case R.id.find_by_bluetooth:
+                    return FindByBluetoothActivity.class;
                 default:
-                    return ShareByEmailActivity.class;
+                    return FindByEmailActivity.class;
             }
         }
     }

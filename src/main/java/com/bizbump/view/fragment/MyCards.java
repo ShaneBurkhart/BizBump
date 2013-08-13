@@ -58,6 +58,8 @@ public class MyCards extends ListFragment {
         activity.actionBarState = MainActivity.MY_CARDS;
         activity.supportInvalidateOptionsMenu();
 
+        activity.setTitle("My Cards");
+
         //Set other action bar attrs
         ActionBar actionBar = activity.getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
