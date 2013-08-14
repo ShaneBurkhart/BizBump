@@ -28,7 +28,7 @@ public class MyCards extends ListFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        this.setListAdapter(new CardsAdapter(this.getActivity(), Card.all()));
+        this.setListAdapter(new CardsAdapter(this.getActivity(), Card.all(getActivity())));
         return inflater.inflate(R.layout.cards_list, container, false);
     }
 

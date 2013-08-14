@@ -28,7 +28,7 @@ public class CardDetailsActivity extends ActionBarActivity {
         String email = getIntent().getExtras().getString("email");
 
         if(email != null)
-            card = Card.findCardByEmail(email);
+            card = Card.findCardByEmail(this, email);
 
         //Check if container exists
         if(findViewById(R.id.fragment_container) != null){

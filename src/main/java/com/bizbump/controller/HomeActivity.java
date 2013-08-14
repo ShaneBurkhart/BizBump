@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bizbump.R;
+import com.bizbump.storage.async.DownloadCardsTask;
 import com.bizbump.utils.OAuthUtils;
 import com.bizbump.view.adapter.DrawerAdapter;
 import com.bizbump.view.fragment.MyCards;
@@ -37,16 +38,12 @@ public class HomeActivity extends ActionBarActivity {
     DrawerLayout drawer;
     RelativeLayout drawerContainer;
 
-    //To wait for token
-    ProgressDialog progressDialog;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
 
         //Set up drawer menu
-
         //Drawer logout
         TextView logout = (TextView) findViewById(R.id.drawer_logout);
         logout.setOnClickListener(new DrawerLogoutClickListener());
@@ -64,14 +61,15 @@ public class HomeActivity extends ActionBarActivity {
 
         drawerList.setItemChecked(0, true);
 
+        new DownloadCardsTask(this).execute("");//Pass token
 
+    }
+
+    public void showInitialView(){
         //Check if container exists
         if(findViewById(R.id.fragment_container) != null){
             //Now add some fragment.
             //Return if already opened or something like that.
-            if(savedInstanceState != null){
-                return;
-            }
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new MyCards()).commit();
         }
     }
