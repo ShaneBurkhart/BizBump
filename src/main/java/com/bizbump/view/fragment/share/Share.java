@@ -3,6 +3,7 @@ package com.bizbump.view.fragment.share;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import com.bizbump.controller.MainActivity;
 import com.bizbump.controller.share.ShareByEmailActivity;
 import com.bizbump.controller.share.ShareByQRActivity;
 import com.bizbump.utils.FontUtils;
+import com.bizbump.utils.MarketingUtils;
 
 /**
  * Created by Shane on 8/12/13.
@@ -28,11 +30,11 @@ public class Share extends Fragment {
 
         v.findViewById(R.id.share_by_email).setOnClickListener(new ShareItemClickListener());
         v.findViewById(R.id.share_by_qr_code).setOnClickListener(new ShareItemClickListener());
-        v.findViewById(R.id.share_by_bluetooth).setOnClickListener(new ShareItemClickListener());
+        v.findViewById(R.id.share_by_text).setOnClickListener(new ShareItemClickListener());
 
         Typeface font = FontUtils.getIconFont(getActivity());
         ((TextView) v.findViewById(R.id.email_icon)).setTypeface(font);
-        ((TextView) v.findViewById(R.id.blutooth_icon)).setTypeface(font);
+        ((TextView) v.findViewById(R.id.text_icon)).setTypeface(font);
         ((TextView) v.findViewById(R.id.qr_icon)).setTypeface(font);
 
         MainActivity activity = (MainActivity) getActivity();
@@ -48,8 +50,17 @@ public class Share extends Fragment {
 
         @Override
         public void onClick(View view) {
-            Intent i = new Intent(getActivity(), getShareOptionActivityClass(view));
-            getActivity().startActivity(i);
+            Class c = getShareOptionActivityClass(view);
+            if(c != null){
+                Intent i = new Intent(getActivity(), c);
+                getActivity().startActivity(i);
+            }
+            if(view.getId() == R.id.share_by_text){
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("sms:"));
+                intent.putExtra("sms_body", MarketingUtils.getSMSText("Shane"));
+                startActivity(intent);
+            }
         }
 
         private Class getShareOptionActivityClass(View view){
@@ -58,8 +69,6 @@ public class Share extends Fragment {
                     return ShareByEmailActivity.class;
                 case R.id.share_by_qr_code:
                     return ShareByQRActivity.class;
-                case R.id.share_by_bluetooth:
-                    return ShareByEmailActivity.class;
                 default:
                     return ShareByEmailActivity.class;
             }

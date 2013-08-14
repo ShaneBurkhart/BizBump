@@ -13,6 +13,7 @@
 
     <string name="icon_qr">&#xF029;</string>
     <string name="icon_bluetooth">&#xF0C2;</string>
+    <string name="icon_text">&#xF075;</string>
     <string name="icon_email">&#xF0E0;</string>
 
 </resources>
