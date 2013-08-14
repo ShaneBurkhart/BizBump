@@ -1,24 +1,23 @@
 package com.bizbump.view.adapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bizbump.R;
-import com.bizbump.storage.cache.BitmapDownloader;
+import com.bizbump.storage.async.BitmapDownloader;
 import com.bizbump.storage.cache.MemoryCache;
 import com.bizbump.model.Card;
 import com.bizbump.utils.CardUtils;
+import com.bizbump.utils.ConnectionUtils;
 import com.bizbump.utils.GravatarUtils;
 
 /**
@@ -130,12 +129,15 @@ public class CardsAdapter extends BaseAdapter {
 
         Bitmap b = MemoryCache.getInstance().get(GravatarUtils.getGravatarURL(card.getEmail()));
         if(b == null){
-            new BitmapDownloader(thumbnail).execute(card.getEmail());
+            if(ConnectionUtils.hasInternet(context))
+                new BitmapDownloader(thumbnail).execute(card.getEmail());
+            else{
+                thumbnail.setImageDrawable(context.getResources().getDrawable(R.drawable.mystery_man));
+                showThumbnail(thumbnail);
+            }
         }else{
-            LinearLayout parent = (LinearLayout) thumbnail.getParent();
-            parent.findViewById(R.id.thumbnail_progress).setVisibility(View.GONE);
-            thumbnail.setVisibility(View.VISIBLE);
             thumbnail.setImageBitmap(b);
+            showThumbnail(thumbnail);
         }
 
         //Set text
@@ -144,5 +146,11 @@ public class CardsAdapter extends BaseAdapter {
         phone_number.setText(card.getPhoneNumber());
 
         //Check for social networks
+    }
+
+    private void showThumbnail(ImageView thumbnail){
+        LinearLayout parent = (LinearLayout) thumbnail.getParent();
+        parent.findViewById(R.id.thumbnail_progress).setVisibility(View.GONE);
+        thumbnail.setVisibility(View.VISIBLE);
     }
 }

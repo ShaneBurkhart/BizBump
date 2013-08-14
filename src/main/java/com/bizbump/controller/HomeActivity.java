@@ -1,6 +1,5 @@
 package com.bizbump.controller;
 
-import android.app.ProgressDialog;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -20,7 +19,6 @@ import android.widget.TextView;
 
 import com.bizbump.R;
 import com.bizbump.storage.async.DownloadCardsTask;
-import com.bizbump.utils.OAuthUtils;
 import com.bizbump.view.adapter.DrawerAdapter;
 import com.bizbump.view.fragment.MyCards;
 import com.bizbump.view.fragment.Settings;
@@ -62,6 +60,9 @@ public class HomeActivity extends ActionBarActivity {
         drawerList.setItemChecked(0, true);
 
         showInitialView();
+
+        getSupportActionBar().setIcon(R.drawable.logo);
+        getSupportActionBar().setTitle("");
     }
 
     public void showInitialView(){

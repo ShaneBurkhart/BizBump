@@ -1,24 +1,13 @@
 package com.bizbump.view.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bizbump.R;
-import com.bizbump.model.Card;
-import com.bizbump.storage.cache.BitmapDownloader;
-import com.bizbump.storage.cache.MemoryCache;
-import com.bizbump.utils.CardUtils;
-import com.bizbump.utils.GravatarUtils;
-
-import java.util.ArrayList;
 
 /**
  * Created by Shane on 8/5/13.

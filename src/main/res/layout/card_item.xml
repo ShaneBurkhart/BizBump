@@ -87,7 +87,7 @@
                 android:orientation="horizontal"
                 android:id="@+id/socials">
 
-            <ImageView
+           <!-- <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/linkedin_256"/>
@@ -105,7 +105,7 @@
             <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/google_256"/>
+                    android:src="@drawable/google_256"/>!-->
 
 
         </LinearLayout>

@@ -1,4 +1,4 @@
-package com.bizbump.storage.cache;
+package com.bizbump.storage.async;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.bizbump.R;
+import com.bizbump.storage.cache.MemoryCache;
+import com.bizbump.utils.ConnectionUtils;
 import com.bizbump.utils.GravatarUtils;
 
 /**
@@ -52,16 +54,16 @@ public class BitmapDownloader extends AsyncTask<String, Void, Bitmap> {
 
     @Override
     protected void onPostExecute(Bitmap bitmap) {
-        Bitmap image = bitmap;
-        if(image != null){
-            MemoryCache.getInstance().add(this.url, image);
-        } else {
-            //TODO Some default image
+        if(!isCancelled()){
+            Bitmap image = bitmap;
+            if(image != null){
+                MemoryCache.getInstance().add(this.url, image);
+            } else {
+                //TODO Some default image
+            }
+            this.handler.post(new BitmapChangerRunnable(bitmap, this.thumbnail));
         }
-        this.handler.post(new BitmapChangerRunnable(bitmap, this.thumbnail));
     }
-
-
 
     private class BitmapChangerRunnable implements Runnable{
         Bitmap bit;
