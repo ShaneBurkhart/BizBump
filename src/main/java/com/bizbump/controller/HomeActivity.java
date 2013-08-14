@@ -61,8 +61,7 @@ public class HomeActivity extends ActionBarActivity {
 
         drawerList.setItemChecked(0, true);
 
-        new DownloadCardsTask(this).execute("");//Pass token
-
+        showInitialView();
     }
 
     public void showInitialView(){
@@ -70,7 +69,7 @@ public class HomeActivity extends ActionBarActivity {
         if(findViewById(R.id.fragment_container) != null){
             //Now add some fragment.
             //Return if already opened or something like that.
-            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new MyCards()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyCards()).commit();
         }
     }
 
@@ -115,6 +114,11 @@ public class HomeActivity extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (drawerToggle.onOptionsItemSelected(item))
             return true;
+        switch (item.getItemId()){
+            case R.id.action_refresh:
+                new DownloadCardsTask(this).execute("");//Pass token
+                return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 

@@ -3,12 +3,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:bizbump="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/action_search"
+    <item android:id="@+id/action_refresh"
+          android:icon="@drawable/refresh"
+          android:title="Refresh"
+          bizbump:showAsAction="always" />
+
+    <!--<item android:id="@+id/action_search"
           android:icon="@drawable/action_search"
           android:title="Search"
           bizbump:showAsAction="always" />
 
-    <!--<item android:id="@+id/action_share_me"
+    <item android:id="@+id/action_share_me"
           android:icon="@drawable/social_share"
           android:title="Share"
           bizbump:showAsAction="always" />!-->
