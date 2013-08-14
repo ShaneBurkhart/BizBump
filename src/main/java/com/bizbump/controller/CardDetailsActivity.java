@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.bizbump.model.Card;
+import com.bizbump.utils.ContactUtils;
 import com.bizbump.view.fragment.CardDetails;
 import com.bizbump.R;
 
@@ -58,25 +59,13 @@ public class CardDetailsActivity extends ActionBarActivity {
                 finish();
                 return true;
             case R.id.action_call:
-                launchCall();
+                ContactUtils.launchCall(this, card.phoneNumber);
                 return true;
             case R.id.action_email:
-                launchEmail();
+                ContactUtils.launchEmail(this, card.email);
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void launchCall(){
-        String uri = "tel:" + card.getPhoneNumber().trim() ;
-        Intent intent = new Intent(Intent.ACTION_DIAL);
-        intent.setData(Uri.parse(uri));
-        startActivity(intent);
-    }
-
-    private void launchEmail(){
-        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", card.email, null));
-        startActivity(Intent.createChooser(emailIntent, "Send email..."));
     }
 
 }

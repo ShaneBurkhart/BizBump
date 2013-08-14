@@ -3,10 +3,13 @@ package com.bizbump.view.fragment;
 import com.bizbump.controller.CardDetailsActivity;
 import com.bizbump.controller.HomeActivity;
 import com.bizbump.model.Card;
+import com.bizbump.utils.ContactUtils;
 import com.bizbump.view.adapter.CardsAdapter;
 
 import com.bizbump.R;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -34,7 +37,9 @@ public class MyCards extends ListFragment {
         //Set divider
         this.getListView().setDivider(new ColorDrawable(Color.TRANSPARENT));
         this.getListView().setDividerHeight(10);
-        this.getListView().setOnItemClickListener(new CardClickListener());
+        CardInputListener listener = new CardInputListener();
+        this.getListView().setOnItemClickListener(listener);
+        this.getListView().setOnItemLongClickListener(listener);
 
         //Set state and invalidate
         HomeActivity activity = (HomeActivity) getActivity();
@@ -51,7 +56,38 @@ public class MyCards extends ListFragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
-    private class CardClickListener implements AdapterView.OnItemClickListener{
+    private class CardInputListener implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener{
+
+        @Override
+        public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+            if(adapterView.getAdapter().getItemViewType(i) == CardsAdapter.CARD){
+                final Card card = (Card) getListAdapter().getItem(i);
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Select Option")
+                .setItems(new String[]{"Call", "Text", "Email"}, new DialogInterface.OnClickListener(){
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case 0:
+                                ContactUtils.launchCall(MyCards.this.getActivity(), card.phoneNumber);
+                                break;
+                            case 1:
+                                ContactUtils.launchText(MyCards.this.getActivity(), card.phoneNumber);
+                                break;
+                            case 2:
+                                ContactUtils.launchEmail(MyCards.this.getActivity(), card.email);
+                                break;
+                        }
+                        dialog.dismiss();
+                    }
+
+                });
+                builder.show();
+                return true;
+            }
+            return false;
+        }
+
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             if(adapterView.getAdapter().getItemViewType(i) == CardsAdapter.CARD){
