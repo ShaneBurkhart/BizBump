@@ -33,8 +33,11 @@ public class LoginActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         redirect();
         finish();
+
+
         am = OAuthUtils.getManager(this);
 
         //Check for logged in
@@ -56,10 +59,6 @@ public class LoginActivity extends ActionBarActivity {
         lv.setOnItemClickListener(new AccountSelectionListener());
 
         setTitle("Login");
-    }
-
-    private void startAuth(){
-
     }
 
     private class AccountSelectionListener implements AdapterView.OnItemClickListener{

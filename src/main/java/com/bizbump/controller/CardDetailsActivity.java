@@ -60,6 +60,9 @@ public class CardDetailsActivity extends ActionBarActivity {
             case R.id.action_call:
                 launchCall();
                 return true;
+            case R.id.action_email:
+                launchEmail();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -69,6 +72,11 @@ public class CardDetailsActivity extends ActionBarActivity {
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse(uri));
         startActivity(intent);
+    }
+
+    private void launchEmail(){
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", card.email, null));
+        startActivity(Intent.createChooser(emailIntent, "Send email..."));
     }
 
 }
