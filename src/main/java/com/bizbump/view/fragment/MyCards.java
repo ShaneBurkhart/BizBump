@@ -25,29 +25,9 @@ import java.util.ArrayList;
  */
 public class MyCards extends ListFragment {
 
-    Card[] cards = new Card[] {
-        new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
-        new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
-        new Card("Shane", "Burkhart", "shaneburkht@gmail.com", "417-209-2813"),
-        new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
-        new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
-        new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
-        new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
-        new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
-        new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
-        new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
-        new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
-        new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
-        new Card("a", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
-        new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813")
-    };
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ArrayList<Object> obj = new ArrayList<Object>();
-        for(int i = 0 ; i < cards.length ; i ++)
-            obj.add(i, cards[i]);
-        this.setListAdapter(new CardsAdapter(this.getActivity(), obj));
+        this.setListAdapter(new CardsAdapter(this.getActivity(), Card.all()));
         return inflater.inflate(R.layout.cards_list, container, false);
     }
 
@@ -73,13 +53,16 @@ public class MyCards extends ListFragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
-    View previous;
-
     private class CardClickListener implements AdapterView.OnItemClickListener{
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             if(adapterView.getAdapter().getItemViewType(i) == CardsAdapter.CARD){
                 Intent intent = new Intent(getActivity(), CardDetailsActivity.class);
+                CardsAdapter adapter = (CardsAdapter) getListAdapter();
+                Card card = (Card) adapter.getItem(i);
+                Bundle bundle = new Bundle();
+                bundle.putString("email", card.email);
+                intent.putExtras(bundle);
                 getActivity().startActivity(intent);
             }
         }

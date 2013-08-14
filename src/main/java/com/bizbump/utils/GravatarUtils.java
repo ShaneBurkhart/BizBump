@@ -31,6 +31,6 @@ public class GravatarUtils {
         String hash = GravatarUtils.md5Hex(email);
         hash = hash == null ? "" : hash;
         Log.d("Gravatar Hash", hash);
-        return "http://www.gravatar.com/avatar/" + hash + "?s=75&d=mm";
+        return "http://www.gravatar.com/avatar/" + hash + "?s=256&d=mm";
     }
 }

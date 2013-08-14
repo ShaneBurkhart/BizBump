@@ -1,5 +1,7 @@
 package com.bizbump.model;
 
+import java.util.ArrayList;
+
 /**
  * Created by Shane on 8/5/13.
  */
@@ -11,6 +13,36 @@ public class Card {
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
+    }
+
+// Statics
+
+    static Card[] cards = new Card[] {
+            new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
+            new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
+            new Card("Shane", "Burkhart", "shaneburkht@gmail.com", "417-209-2813"),
+            new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
+            new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
+            new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
+            new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
+            new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
+            new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
+            new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
+            new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
+            new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
+            new Card("a", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
+            new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813")
+    };
+
+    public static ArrayList<Object> all(){
+        ArrayList<Object> obj = new ArrayList<Object>();
+        for(int i = 0 ; i < cards.length ; i ++)
+            obj.add(i, cards[i]);
+        return obj;
+    }
+
+    public static Card findCardByEmail(String email){
+        return cards[0];
     }
 
 // Getters and Setters

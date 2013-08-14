@@ -1,11 +1,14 @@
 package com.bizbump.controller;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.bizbump.model.Card;
 import com.bizbump.view.fragment.CardDetails;
 import com.bizbump.R;
 
@@ -14,10 +17,17 @@ import com.bizbump.R;
  */
 public class CardDetailsActivity extends ActionBarActivity {
 
+    public Card card;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.general_container);
+
+        String email = getIntent().getExtras().getString("email");
+
+        if(email != null)
+            card = Card.findCardByEmail(email);
 
         //Check if container exists
         if(findViewById(R.id.fragment_container) != null){
@@ -47,8 +57,18 @@ public class CardDetailsActivity extends ActionBarActivity {
             case android.R.id.home:
                 finish();
                 return true;
+            case R.id.action_call:
+                launchCall();
+                return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void launchCall(){
+        String uri = "tel:" + card.getPhoneNumber().trim() ;
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse(uri));
+        startActivity(intent);
     }
 
 }

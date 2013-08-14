@@ -99,7 +99,7 @@ public class CardsAdapter extends BaseAdapter {
                     v = vi.inflate(R.layout.letter_seperator, null);
                     break;
                 case CARD:
-                    v = vi.inflate(R.layout.card_details, null);
+                    v = vi.inflate(R.layout.card_item, null);
                     break;
             }
         }

@@ -74,15 +74,6 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     protected void onResume() {
-        //Not going to work here since this is called every time activity opens
-        /*drawerList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        TextView item = (TextView) drawerList.getChildAt(0);
-        if(item != null){
-            Log.d("Pos", drawerList.getFirstVisiblePosition() + "");
-            item.setTextColor(getResources().getColor(android.R.color.white));
-            item.setBackgroundColor(getResources().getColor(R.color.action_background));
-        }
-        drawerList.setSelection(0);*/
         super.onResume();
     }
 
@@ -141,5 +132,13 @@ public class MainActivity extends ActionBarActivity {
             default:
                 return new MyCards();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(drawer.isDrawerOpen(drawerList))
+            drawer.closeDrawers();
+        else
+            super.onBackPressed();
     }
 }
