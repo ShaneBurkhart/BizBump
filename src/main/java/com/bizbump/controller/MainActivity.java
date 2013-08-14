@@ -6,6 +6,7 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -140,5 +141,17 @@ public class MainActivity extends ActionBarActivity {
             drawer.closeDrawers();
         else
             super.onBackPressed();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_MENU) {
+            if(drawer.isDrawerOpen(drawerList))
+                drawer.closeDrawers();
+            else
+                drawer.openDrawer(drawerList);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
