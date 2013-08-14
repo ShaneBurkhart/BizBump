@@ -18,6 +18,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.bizbump.utils.OAuthUtils;
+
 import java.io.IOException;
 
 /**
@@ -31,10 +33,7 @@ public class LoginActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        am = AccountManager.get(this);
-
-        if(am.getAuthenticatorTypes().length > 0)
-            redirect();
+        am = OAuthUtils.getManager(this);
 
         ListView lv = new ListView(this);
         setContentView(lv);

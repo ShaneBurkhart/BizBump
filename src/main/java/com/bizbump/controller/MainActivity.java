@@ -1,5 +1,6 @@
 package com.bizbump.controller;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -17,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.bizbump.R;
+import com.bizbump.utils.OAuthUtils;
 import com.bizbump.view.adapter.DrawerAdapter;
 import com.bizbump.view.fragment.MyCards;
 import com.bizbump.view.fragment.Settings;
@@ -41,6 +43,13 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Check for logged in
+        if(!OAuthUtils.isLoggedIn(this)){
+            redirect();
+            // End activity.  We'll come back no worries.
+            finish();
+        }
+
         //Set up drawer menu
         String[] drawerItems = getResources().getStringArray(R.array.drawer_items);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -64,7 +73,10 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-
+    private void redirect(){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
