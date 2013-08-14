@@ -4,6 +4,7 @@ import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.accounts.AccountManagerCallback;
 import android.accounts.AccountManagerFuture;
+import android.content.Intent;
 import android.os.Bundle;
 import android.accounts.OperationCanceledException;
 import android.os.Handler;
@@ -26,7 +27,7 @@ public class LoginActivity extends ActionBarActivity {
         AccountManager am = AccountManager.get(this);
         Account[] accounts = am.getAccountsByType("com.google");
 
-        am.getAuthToken(accounts[0], "Manage your tasks", new Bundle(), this, new OnTokenAcquired(), new Handler());
+        am.getAuthToken(accounts[1], "Manage your tasks", new Bundle(), this, new OnTokenAcquired(), new Handler());
     }
 
     private class OnTokenAcquired implements AccountManagerCallback<Bundle> {
@@ -39,6 +40,11 @@ public class LoginActivity extends ActionBarActivity {
                 // is stored in the constant AccountManager.KEY_AUTHTOKEN.
                 String token = bundle.getString(AccountManager.KEY_AUTHTOKEN);
                 Log.d("Account - Token", token);
+
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                //Add token probably.  We'll see.
+                startActivity(intent);
+
             } catch (IOException e){
                 e.printStackTrace();
             } catch (OperationCanceledException e){
