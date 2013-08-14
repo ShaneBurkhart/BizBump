@@ -10,8 +10,11 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
+import com.bizbump.R;
 import com.bizbump.utils.GravatarUtils;
 
 /**
@@ -71,6 +74,9 @@ public class BitmapDownloader extends AsyncTask<String, Void, Bitmap> {
 
         @Override
         public void run() {
+            LinearLayout parent = (LinearLayout) thumbnail.getParent();
+            parent.findViewById(R.id.thumbnail_progress).setVisibility(View.GONE);
+            thumbnail.setVisibility(View.VISIBLE);
             this.thumb.setImageBitmap(this.bit);
         }
     }

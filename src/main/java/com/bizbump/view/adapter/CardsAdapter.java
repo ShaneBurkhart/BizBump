@@ -130,9 +130,11 @@ public class CardsAdapter extends BaseAdapter {
 
         Bitmap b = MemoryCache.getInstance().get(GravatarUtils.getGravatarURL(card.getEmail()));
         if(b == null){
-            //TODO Set some loading image
             new BitmapDownloader(thumbnail).execute(card.getEmail());
         }else{
+            LinearLayout parent = (LinearLayout) thumbnail.getParent();
+            parent.findViewById(R.id.thumbnail_progress).setVisibility(View.GONE);
+            thumbnail.setVisibility(View.VISIBLE);
             thumbnail.setImageBitmap(b);
         }
 
