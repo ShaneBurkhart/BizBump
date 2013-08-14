@@ -1,5 +1,6 @@
 package com.bizbump.controller;
 
+import android.R;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.accounts.AccountManagerCallback;
@@ -12,6 +13,10 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 
 import android.accounts.AuthenticatorException;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.io.IOException;
 
@@ -20,14 +25,37 @@ import java.io.IOException;
  */
 public class LoginActivity extends ActionBarActivity {
 
+    Account[] accounts;
+    AccountManager am;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        am = AccountManager.get(this);
 
-        AccountManager am = AccountManager.get(this);
-        Account[] accounts = am.getAccountsByType("com.google");
+        if(am.getAuthenticatorTypes().length > 0)
+            redirect();
 
-        am.getAuthToken(accounts[1], "Manage your tasks", new Bundle(), this, new OnTokenAcquired(), new Handler());
+        ListView lv = new ListView(this);
+        setContentView(lv);
+
+        accounts = am.getAccountsByType("com.google");
+
+        String[] aStrings = new String[accounts.length];
+        for(int i = 0 ; i < aStrings.length ; i ++)
+            aStrings[i] = accounts[i].type + " - " + accounts[i].name;
+
+        lv.setAdapter(new ArrayAdapter<String>(this, R.layout.simple_list_item_1, R.id.text1, aStrings));
+        lv.setOnItemClickListener(new AccountSelectionListener());
+
+        setTitle("Login");
+    }
+
+    private class AccountSelectionListener implements AdapterView.OnItemClickListener{
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            am.getAuthToken(accounts[i], "Manage your tasks", new Bundle(), LoginActivity.this, new OnTokenAcquired(), new Handler());
+        }
     }
 
     private class OnTokenAcquired implements AccountManagerCallback<Bundle> {
@@ -40,11 +68,7 @@ public class LoginActivity extends ActionBarActivity {
                 // is stored in the constant AccountManager.KEY_AUTHTOKEN.
                 String token = bundle.getString(AccountManager.KEY_AUTHTOKEN);
                 Log.d("Account - Token", token);
-
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                //Add token probably.  We'll see.
-                startActivity(intent);
-
+                redirect();
             } catch (IOException e){
                 e.printStackTrace();
             } catch (OperationCanceledException e){
@@ -53,5 +77,11 @@ public class LoginActivity extends ActionBarActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void redirect(){
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        //Add token probably.  We'll see.
+        startActivity(intent);
     }
 }
