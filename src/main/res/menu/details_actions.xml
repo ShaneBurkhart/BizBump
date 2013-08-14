@@ -12,6 +12,11 @@
           android:title="Email"
           bizbump:showAsAction="always" />
 
+    <item android:id="@+id/action_text"
+          android:icon="@drawable/action_text"
+          android:title="Email"
+          bizbump:showAsAction="ifRoom" />
+
     <!--<item android:id="@+id/action_share"
           android:icon="@drawable/social_share"
           android:title="Share"

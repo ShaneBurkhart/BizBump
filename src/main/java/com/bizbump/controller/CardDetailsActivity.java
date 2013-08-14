@@ -64,6 +64,9 @@ public class CardDetailsActivity extends ActionBarActivity {
             case R.id.action_email:
                 ContactUtils.launchEmail(this, card.email);
                 return true;
+            case R.id.action_text:
+                ContactUtils.launchText(this, card.phoneNumber);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
