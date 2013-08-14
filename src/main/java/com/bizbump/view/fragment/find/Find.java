@@ -12,10 +12,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bizbump.R;
+import com.bizbump.controller.HomeActivity;
 import com.bizbump.controller.find.FindByBluetoothActivity;
 import com.bizbump.controller.find.FindByEmailActivity;
 import com.bizbump.controller.find.FindByQRActivity;
-import com.bizbump.controller.MainActivity;
 import com.bizbump.utils.FontUtils;
 
 /**
@@ -36,8 +36,8 @@ public class Find extends Fragment {
         ((TextView) v.findViewById(R.id.blutooth_icon)).setTypeface(font);
         ((TextView) v.findViewById(R.id.qr_icon)).setTypeface(font);
 
-        MainActivity activity = (MainActivity) getActivity();
-        activity.actionBarState = MainActivity.NONE;
+        HomeActivity activity = (HomeActivity) getActivity();
+        activity.actionBarState = HomeActivity.NONE;
         activity.supportInvalidateOptionsMenu();
 
         activity.setTitle("Find");

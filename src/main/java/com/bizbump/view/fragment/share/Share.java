@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bizbump.R;
-import com.bizbump.controller.MainActivity;
+import com.bizbump.controller.HomeActivity;
 import com.bizbump.controller.share.ShareByEmailActivity;
 import com.bizbump.controller.share.ShareByQRActivity;
 import com.bizbump.utils.FontUtils;
@@ -37,8 +37,8 @@ public class Share extends Fragment {
         ((TextView) v.findViewById(R.id.text_icon)).setTypeface(font);
         ((TextView) v.findViewById(R.id.qr_icon)).setTypeface(font);
 
-        MainActivity activity = (MainActivity) getActivity();
-        activity.actionBarState = MainActivity.NONE;
+        HomeActivity activity = (HomeActivity) getActivity();
+        activity.actionBarState = HomeActivity.NONE;
         activity.supportInvalidateOptionsMenu();
 
         activity.setTitle("Share");
@@ -69,9 +69,8 @@ public class Share extends Fragment {
                     return ShareByEmailActivity.class;
                 case R.id.share_by_qr_code:
                     return ShareByQRActivity.class;
-                default:
-                    return ShareByEmailActivity.class;
             }
+            return null;
         }
     }
 }

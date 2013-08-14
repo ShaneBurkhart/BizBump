@@ -1,7 +1,7 @@
 package com.bizbump.view.fragment;
 
 import com.bizbump.controller.CardDetailsActivity;
-import com.bizbump.controller.MainActivity;
+import com.bizbump.controller.HomeActivity;
 import com.bizbump.model.Card;
 import com.bizbump.view.adapter.CardsAdapter;
 
@@ -17,8 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.graphics.Color;
 import android.widget.AdapterView;
-
-import java.util.ArrayList;
 
 /**
  * Created by Shane on 8/5/13.
@@ -39,8 +37,8 @@ public class MyCards extends ListFragment {
         this.getListView().setOnItemClickListener(new CardClickListener());
 
         //Set state and invalidate
-        MainActivity activity = (MainActivity) getActivity();
-        activity.actionBarState = MainActivity.MY_CARDS;
+        HomeActivity activity = (HomeActivity) getActivity();
+        activity.actionBarState = HomeActivity.MY_CARDS;
         activity.supportInvalidateOptionsMenu();
 
         activity.setTitle("My Cards");

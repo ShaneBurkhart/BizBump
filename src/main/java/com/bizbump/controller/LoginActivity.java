@@ -33,7 +33,15 @@ public class LoginActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        redirect();
+        finish();
         am = OAuthUtils.getManager(this);
+
+        //Check for logged in
+        if(OAuthUtils.isLoggedIn(this)){
+
+            //return;
+        }
 
         ListView lv = new ListView(this);
         setContentView(lv);
@@ -48,6 +56,10 @@ public class LoginActivity extends ActionBarActivity {
         lv.setOnItemClickListener(new AccountSelectionListener());
 
         setTitle("Login");
+    }
+
+    private void startAuth(){
+
     }
 
     private class AccountSelectionListener implements AdapterView.OnItemClickListener{
@@ -67,7 +79,7 @@ public class LoginActivity extends ActionBarActivity {
                 // is stored in the constant AccountManager.KEY_AUTHTOKEN.
                 String token = bundle.getString(AccountManager.KEY_AUTHTOKEN);
                 Log.d("Account - Token", token);
-                redirect();
+                //redirect();
             } catch (IOException e){
                 e.printStackTrace();
             } catch (OperationCanceledException e){
@@ -79,7 +91,7 @@ public class LoginActivity extends ActionBarActivity {
     }
 
     private void redirect(){
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
         //Add token probably.  We'll see.
         startActivity(intent);
     }

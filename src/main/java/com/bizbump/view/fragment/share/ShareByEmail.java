@@ -2,7 +2,6 @@ package com.bizbump.view.fragment.share;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.bizbump.R;
-import com.bizbump.controller.MainActivity;
+
 /**
  * Created by Shane on 8/12/13.
  */
