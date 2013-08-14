@@ -64,7 +64,7 @@ public class MyCards extends ListFragment {
                 final Card card = (Card) getListAdapter().getItem(i);
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Select Option")
-                .setItems(new String[]{"Call", "Text", "Email"}, new DialogInterface.OnClickListener(){
+                .setItems(new String[]{"Call", "Text", "Email", "Remove"}, new DialogInterface.OnClickListener(){
 
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which){
@@ -76,6 +76,9 @@ public class MyCards extends ListFragment {
                                 break;
                             case 2:
                                 ContactUtils.launchEmail(MyCards.this.getActivity(), card.email);
+                                break;
+                            case 3:
+                                //Some remove method.
                                 break;
                         }
                         dialog.dismiss();

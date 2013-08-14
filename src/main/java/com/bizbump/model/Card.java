@@ -1,5 +1,10 @@
 package com.bizbump.model;
 
+import android.util.Log;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 /**
@@ -36,8 +41,10 @@ public class Card {
 
     public static ArrayList<Object> all(){
         ArrayList<Object> obj = new ArrayList<Object>();
-        for(int i = 0 ; i < cards.length ; i ++)
+        for(int i = 0 ; i < cards.length ; i ++){
             obj.add(i, cards[i]);
+            Log.d("JSON", cards[i].toJSON());
+        }
         return obj;
     }
 
@@ -49,6 +56,11 @@ public class Card {
                 return c;
         }
         return null;
+    }
+
+    // Not thread safe
+    public static void getCardFromAPI(String token){
+
     }
 
 // Getters and Setters
@@ -87,5 +99,24 @@ public class Card {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    //Formats
+
+    public JSONObject toJSONObject(){
+        JSONObject obj = new JSONObject();
+        try{
+            obj.put("email", this.email);
+            obj.put("phone_number", this.phoneNumber);
+            obj.put("first_name", this.firstName);
+            obj.put("last_name", this.lastName);
+            return obj;
+        }catch (JSONException e){
+            return obj;
+        }
+    }
+
+    public String toJSON(){
+        return toJSONObject().toString();
     }
 }
