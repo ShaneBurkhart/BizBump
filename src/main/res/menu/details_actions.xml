@@ -8,12 +8,12 @@
           bizbump:showAsAction="always" />
 
     <item android:id="@+id/action_email"
-          android:icon="@drawable/device_access_call"
+          android:icon="@drawable/content_email"
           android:title="Email"
           bizbump:showAsAction="always" />
 
-    <item android:id="@+id/action_share"
+    <!--<item android:id="@+id/action_share"
           android:icon="@drawable/social_share"
           android:title="Share"
-          bizbump:showAsAction="always" />
+          bizbump:showAsAction="" />!-->
 </menu>
