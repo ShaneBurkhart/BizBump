@@ -22,8 +22,8 @@ public class Card {
             new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
             new Card("Shane", "Burkhart", "shaneburkht@gmail.com", "417-209-2813"),
             new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
-            new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
-            new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
+            new Card("Ryan", "Endacott", "rzendacott@gmail.com", "417-209-2813"),
+            new Card("Daniel", "Holmgren", "dansdebate@gmail.com", "417-209-2813"),
             new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
             new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
             new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
@@ -42,7 +42,13 @@ public class Card {
     }
 
     public static Card findCardByEmail(String email){
-        return cards[0];
+        ArrayList<Object> cards = Card.all();
+        for(Object o : cards){
+            Card c = (Card) o;
+            if(c.email.equals(email))
+                return c;
+        }
+        return null;
     }
 
 // Getters and Setters
