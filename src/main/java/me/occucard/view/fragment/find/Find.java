@@ -16,7 +16,9 @@ import me.occucard.controller.HomeActivity;
 import me.occucard.controller.find.FindByBluetoothActivity;
 import me.occucard.controller.find.FindByEmailActivity;
 import me.occucard.controller.find.FindByQRActivity;
+import me.occucard.utils.ConnectionUtils;
 import me.occucard.utils.FontUtils;
+import me.occucard.view.dialog.DefaultDialog;
 
 /**
  * Created by Shane on 8/12/13.
@@ -49,6 +51,31 @@ public class Find extends Fragment {
 
         @Override
         public void onClick(View view) {
+            if(!ConnectionUtils.hasInternet(getActivity())){
+                String message;
+                switch (view.getId()){
+                    case R.id.find_by_email:
+                        message = "You can't find by email without an internet connection.";
+                        break;
+                    case R.id.find_by_qr_code:
+                        message = "You can't scan a qr code without an internet connection.";
+                        break;
+                    case R.id.find_by_bluetooth:
+                        message = "You can't find people near me without an internet connection.";
+                        break;
+                    default:
+                        message = "You can't find contacts without an internet connection.";
+                        break;
+                }
+                DefaultDialog.create(getActivity(), "No Connection.", message).show();
+                return;
+            }
+            //Temp!!!
+            if(view.getId() == R.id.find_by_bluetooth){
+                DefaultDialog.create(getActivity(), "Coming Soon!", "This feature hasn't been implemented yet.  Thanks for your patience!").show();
+                return;
+            }
+            //Temp!!!
             Intent i = new Intent(getActivity(), getFindOptionActivityClass(view));
             getActivity().startActivity(i);
         }

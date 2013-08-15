@@ -16,8 +16,10 @@ import me.occucard.R;
 import me.occucard.controller.HomeActivity;
 import me.occucard.controller.share.ShareByEmailActivity;
 import me.occucard.controller.share.ShareByQRActivity;
+import me.occucard.utils.ConnectionUtils;
 import me.occucard.utils.FontUtils;
 import me.occucard.utils.MarketingUtils;
+import me.occucard.view.dialog.DefaultDialog;
 
 /**
  * Created by Shane on 8/12/13.
@@ -50,6 +52,10 @@ public class Share extends Fragment {
 
         @Override
         public void onClick(View view) {
+            if(view.getId() == R.id.share_by_email && !ConnectionUtils.hasInternet(getActivity())){
+                DefaultDialog.create(getActivity(), "No Connection.", "You can't share by email without an internet connection.").show();
+                return;
+            }
             Class c = getShareOptionActivityClass(view);
             if(c != null){
                 Intent i = new Intent(getActivity(), c);
