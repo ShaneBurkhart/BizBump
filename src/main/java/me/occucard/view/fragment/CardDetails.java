@@ -15,6 +15,7 @@ import me.occucard.controller.CardDetailsActivity;
 import me.occucard.model.Card;
 import me.occucard.storage.async.BitmapDownloader;
 import me.occucard.storage.cache.MemoryCache;
+import me.occucard.utils.ConnectionUtils;
 import me.occucard.utils.GravatarUtils;
 
 /**
@@ -41,12 +42,15 @@ public class CardDetails extends Fragment {
 
         Bitmap b = MemoryCache.getInstance().get(GravatarUtils.getGravatarURL(card.getEmail()));
         if(b == null){
-            new BitmapDownloader(thumbnail).execute(card.getEmail());
+            if(ConnectionUtils.hasInternet(getActivity()))
+                new BitmapDownloader(thumbnail).execute(card.getEmail());
+            else{
+                thumbnail.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.mystery_man));
+                showThumbnail(thumbnail);
+            }
         }else{
-            LinearLayout parent = (LinearLayout) thumbnail.getParent();
-            parent.findViewById(R.id.thumbnail_progress).setVisibility(View.GONE);
-            thumbnail.setVisibility(View.VISIBLE);
             thumbnail.setImageBitmap(b);
+            showThumbnail(thumbnail);
         }
 
         activity.getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -59,5 +63,9 @@ public class CardDetails extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
-
+    private void showThumbnail(ImageView thumbnail){
+        LinearLayout parent = (LinearLayout) thumbnail.getParent();
+        parent.findViewById(R.id.thumbnail_progress).setVisibility(View.GONE);
+        thumbnail.setVisibility(View.VISIBLE);
+    }
 }
