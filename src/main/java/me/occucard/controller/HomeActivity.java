@@ -1,6 +1,7 @@
 package me.occucard.controller;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -17,9 +18,11 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import me.occucard.R;
 import me.occucard.storage.async.DownloadCardsTask;
+import me.occucard.utils.auth.OAuthUtils;
 import me.occucard.view.adapter.DrawerAdapter;
 import me.occucard.view.fragment.MyCards;
 import me.occucard.view.fragment.Settings;
@@ -137,7 +140,12 @@ public class HomeActivity extends ActionBarActivity {
     private class DrawerLogoutClickListener implements View.OnClickListener{
         @Override
         public void onClick(View view) {
-            //OAuthUtils.logout(HomeActivity.this);
+            HomeActivity activity = HomeActivity.this;
+            OAuthUtils.logout(activity);
+            Toast.makeText(activity, "Logged you out.", Toast.LENGTH_LONG);
+            Intent intent = new Intent(activity, LoginActivity.class);
+            activity.startActivity(intent);
+            activity.finish();
         }
     }
 

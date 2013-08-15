@@ -78,7 +78,7 @@ public class Card {
             fos.write(Card.cardsToJSON(cards).toString().getBytes());
             fos.close();
         } catch (IOException e){
-            e.printStackTrace();
+            //Failed
         }
     }
 

@@ -17,9 +17,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.android.gms.auth.GoogleAuthUtil;
+
 import java.io.IOException;
 
-import me.occucard.utils.OAuthUtils;
+import me.occucard.utils.auth.AcquireTokenTask;
+import me.occucard.utils.auth.OAuthUtils;
 
 /**
  * Created by Shane on 8/13/13.
@@ -33,22 +36,22 @@ public class LoginActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        redirect();
-        finish();
-
-
         am = OAuthUtils.getManager(this);
+        accounts = am.getAccountsByType(GoogleAuthUtil.GOOGLE_ACCOUNT_TYPE);
 
         //Check for logged in
-        if(OAuthUtils.isLoggedIn(this)){
-
-            //return;
+        String accountName = OAuthUtils.getLoggedInAccount(this);
+        if(accountName != null){
+            for(Account a : accounts){
+                if(a.name.equals(accountName)){
+                    startTokenTask(accountName, false);
+                    return;
+                }
+            }
         }
 
         ListView lv = new ListView(this);
         setContentView(lv);
-
-        accounts = am.getAccountsByType("com.google");
 
         String[] aStrings = new String[accounts.length];
         for(int i = 0 ; i < aStrings.length ; i ++)
@@ -64,34 +67,11 @@ public class LoginActivity extends ActionBarActivity {
     private class AccountSelectionListener implements AdapterView.OnItemClickListener{
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            am.getAuthToken(accounts[i], "Manage your tasks", new Bundle(), LoginActivity.this, new OnTokenAcquired(), new Handler());
+            startTokenTask(accounts[i].name, true);
         }
     }
 
-    private class OnTokenAcquired implements AccountManagerCallback<Bundle> {
-        @Override
-        public void run(AccountManagerFuture<Bundle> result) {
-            try{
-                // Get the result of the operation from the AccountManagerFuture.
-                Bundle bundle = result.getResult();
-                // The token is a named value in the bundle. The name of the value
-                // is stored in the constant AccountManager.KEY_AUTHTOKEN.
-                String token = bundle.getString(AccountManager.KEY_AUTHTOKEN);
-                Log.d("Account - Token", token);
-                //redirect();
-            } catch (IOException e){
-                e.printStackTrace();
-            } catch (OperationCanceledException e){
-                e.printStackTrace();
-            } catch (AuthenticatorException e){
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private void redirect(){
-        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-        //Add token probably.  We'll see.
-        startActivity(intent);
+    private void startTokenTask(String accountName, boolean isNew){
+        new AcquireTokenTask(LoginActivity.this, isNew).execute(accountName);
     }
 }
