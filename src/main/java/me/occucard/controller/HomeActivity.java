@@ -21,10 +21,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import me.occucard.R;
+import me.occucard.model.Card;
 import me.occucard.storage.async.DownloadCardsTask;
 import me.occucard.storage.cache.OccucardTokenCache;
 import me.occucard.utils.auth.OAuthUtils;
 import me.occucard.view.adapter.DrawerAdapter;
+import me.occucard.view.dialog.DefaultDialog;
 import me.occucard.view.fragment.MyCards;
 import me.occucard.view.fragment.Settings;
 import me.occucard.view.fragment.find.Find;
@@ -126,7 +128,10 @@ public class HomeActivity extends ActionBarActivity {
             return true;
         switch (item.getItemId()){
             case R.id.action_refresh:
-                new DownloadCardsTask(this).execute("");//Pass token
+                if(OccucardTokenCache.getInstance().hasToken())
+                    new DownloadCardsTask(this).execute(OccucardTokenCache.getInstance().getToken());//Pass token
+                else
+                    DefaultDialog.create(HomeActivity.this, "Not Logged In", "You need to log in to refresh your contacts.");
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -137,6 +142,11 @@ public class HomeActivity extends ActionBarActivity {
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             drawerList.setSelection(i);
             Fragment frag = getFragmentFromPosition(i);
+            if(frag instanceof Settings){
+                DefaultDialog.create(HomeActivity.this, "Coming Soon!", "This feature hasn't been implemented yet.  Thanks for your patience!").show();
+                drawer.closeDrawers();
+                return;
+            }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, frag).commit();
             drawer.closeDrawers();
         }
@@ -147,6 +157,7 @@ public class HomeActivity extends ActionBarActivity {
         public void onClick(View view) {
             HomeActivity activity = HomeActivity.this;
             if(OccucardTokenCache.getInstance().hasToken()){
+                Card.eraseCardStorage(activity);
                 OccucardTokenCache.getInstance().claarToken();
                 OAuthUtils.logout(activity);
                 Toast.makeText(activity, "Logged you out.", Toast.LENGTH_LONG);

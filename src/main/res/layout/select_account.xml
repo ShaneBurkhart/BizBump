@@ -6,17 +6,75 @@
         android:layout_height="match_parent">
 
     <LinearLayout
-                  android:orientation="vertical"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_alignParentTop="true">
+            android:id="@+id/button_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/action_background"/>
+
+        <Button
+            android:id="@+id/choose_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="7dp"
+            android:text="Choose Email"
+            android:gravity="center"
+            android:layout_marginBottom="5dp"
+            android:background="#ff555555"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_alignParentTop="true"
+              android:layout_above="@id/button_container">
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter Your Email"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textStyle="bold"
+                android:textColor="#444"/>
+
+        <EditText
+                android:id="@+id/account_email"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:hint="Email"
+                android:inputType="textEmailAddress"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Or"
+                android:gravity="center"
+                android:textSize="17dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textStyle="bold"
+                android:textColor="#444"/>
 
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Select An Account"
                 android:gravity="center"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:textStyle="bold"
@@ -29,20 +87,14 @@
 
         <ListView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/account_list"
                 android:clipToPadding="false"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:scrollbarStyle="outsideInset"/>
+                android:scrollbarStyle="outsideInset"
+                android:background="@android:color/white"/>
 
     </LinearLayout>
-
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Custom account creation is in development.  Right now, select a google account."
-            android:layout_alignParentBottom="true"
-            android:gravity="center"/>
 
 </RelativeLayout>

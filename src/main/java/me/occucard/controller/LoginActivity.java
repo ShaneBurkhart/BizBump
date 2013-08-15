@@ -23,24 +23,24 @@ import java.io.IOException;
 import me.occucard.R;
 import me.occucard.utils.auth.AcquireTokenTask;
 import me.occucard.utils.auth.OAuthUtils;
+import me.occucard.view.fragment.SelectAccount;
 
 /**
  * Created by Shane on 8/13/13.
  */
 public class LoginActivity extends ActionBarActivity {
 
-    Account[] accounts;
-    AccountManager am;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.general_container);
 
-        am = OAuthUtils.getManager(this);
-        accounts = am.getAccountsByType(GoogleAuthUtil.GOOGLE_ACCOUNT_TYPE);
+
 
         //Check for logged in
-        String accountName = OAuthUtils.getLoggedInAccount(this);
+        /*String accountName = OAuthUtils.getLoggedInAccount(this);
         if(accountName != null){
             for(Account a : accounts){
                 if(a.name.equals(accountName)){
@@ -48,31 +48,10 @@ public class LoginActivity extends ActionBarActivity {
                     return;
                 }
             }
-        }
+        }*/
 
-        setContentView(R.layout.select_account);
-
-        ListView lv = (ListView) findViewById(R.id.account_list);
-
-        String[] aStrings = new String[accounts.length];
-        for(int i = 0 ; i < aStrings.length ; i ++)
-            aStrings[i] = accounts[i].name;
-
-        lv.setAdapter(new ArrayAdapter<String>(this, R.layout.account_item, aStrings));
-        lv.setOnItemClickListener(new AccountSelectionListener());
-
-        getSupportActionBar().setIcon(me.occucard.R.drawable.logo);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SelectAccount()).commit();
     }
 
-    private class AccountSelectionListener implements AdapterView.OnItemClickListener{
-        @Override
-        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            startTokenTask(accounts[i].name, true);
-        }
-    }
 
-    private void startTokenTask(String accountName, boolean isNew){
-        new AcquireTokenTask(LoginActivity.this, isNew).execute(accountName);
-    }
 }

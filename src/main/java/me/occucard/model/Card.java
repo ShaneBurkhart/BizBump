@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -69,6 +70,17 @@ public class Card {
                 return c;
         }
         return null;
+    }
+
+    public static boolean eraseCardStorage(Context context){
+        File dir = context.getFilesDir();
+        File file = new File(dir, FILENAME);
+        return file.delete();
+    }
+    public static boolean hasCardStorage(Context context){
+        File dir = context.getFilesDir();
+        File file = new File(dir, FILENAME);
+        return  file.exists();
     }
 
     // Not thread safe
