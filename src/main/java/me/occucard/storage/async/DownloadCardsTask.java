@@ -35,7 +35,7 @@ public class DownloadCardsTask extends AsyncTask<String, Void, String>{
             return;
         }
         dialog = new ProgressDialog(this.context);
-        dialog.setTitle("Getting your contacts.");
+        dialog.setMessage("Getting your contacts.");
         dialog.show();
         super.onPreExecute();
     }
