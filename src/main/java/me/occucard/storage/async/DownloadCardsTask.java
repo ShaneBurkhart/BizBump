@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import me.occucard.controller.HomeActivity;
 import me.occucard.model.Card;
 import me.occucard.utils.ConnectionUtils;
+import me.occucard.view.dialog.DefaultDialog;
 
 /**
  * Created by Shane on 8/14/13.
@@ -30,16 +31,7 @@ public class DownloadCardsTask extends AsyncTask<String, Void, String>{
     @Override
     protected void onPreExecute() {
         if(!ConnectionUtils.hasInternet(context)){
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setTitle("No Connection")
-                    .setMessage("We can not get your cards due to lack of connection.")
-                    .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                        }
-                    })
-                    .show();
+            DefaultDialog.create(context, "No Connection", "We can not get your cards due to lack of connection.").show();
             return;
         }
         dialog = new ProgressDialog(this.context);

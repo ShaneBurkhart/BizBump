@@ -17,6 +17,7 @@ import java.io.IOException;
 import me.occucard.controller.HomeActivity;
 import me.occucard.controller.LoginActivity;
 import me.occucard.storage.cache.OccucardTokenCache;
+import me.occucard.utils.ConnectionUtils;
 
 /**
  * Created by Shane on 8/14/13.
@@ -48,6 +49,8 @@ public class AcquireTokenTask extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... strings) {
         String token = null;
         String occucardToken = null;
+        if(!ConnectionUtils.hasInternet(context))
+            return occucardToken;
         account = strings.length > 0 ? strings[0] : null;
         try{
         Log.d("Token Account", account);
