@@ -175,9 +175,10 @@ public class HomeActivity extends ActionBarActivity {
     @Override
     public void onBackPressed() {
         Fragment frag = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-        if(frag == null || !(frag instanceof MyCards))
+        if(frag == null || !(frag instanceof MyCards)){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyCards()).commit();
-        else if(drawer.isDrawerOpen(drawerContainer))
+            drawerList.setSelection(0);
+        }else if(drawer.isDrawerOpen(drawerContainer))
             drawer.closeDrawers();
         else
             super.onBackPressed();
