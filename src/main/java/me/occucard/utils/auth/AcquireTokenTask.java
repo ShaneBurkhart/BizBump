@@ -16,6 +16,7 @@ import java.io.IOException;
 
 import me.occucard.controller.HomeActivity;
 import me.occucard.controller.LoginActivity;
+import me.occucard.storage.cache.OccucardTokenCache;
 
 /**
  * Created by Shane on 8/14/13.
@@ -82,6 +83,7 @@ public class AcquireTokenTask extends AsyncTask<String, Void, String> {
                 showToastAndRedirect();
         }else{
             //Got Token from api
+            OccucardTokenCache.getInstance().setToken(s); //Cache token
             OAuthUtils.saveLoggedInAccount(context, account);
             redirect();
         }
@@ -94,7 +96,12 @@ public class AcquireTokenTask extends AsyncTask<String, Void, String> {
     }
 
     private void showToast(){
-        Toast.makeText(context, "Couldn't log you in.  Try again later.", Toast.LENGTH_LONG).show();
+        String start = "Couldn't log you in";
+        String middle = ".  ";
+        String end = "Try again later.";
+        if(!isNew)
+            middle = " but you can still view your contacts.  ";
+        Toast.makeText(context, start + middle + end, Toast.LENGTH_LONG).show();
     }
 
     private void redirect(){

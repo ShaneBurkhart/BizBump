@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import me.occucard.R;
 import me.occucard.storage.async.DownloadCardsTask;
+import me.occucard.storage.cache.OccucardTokenCache;
 import me.occucard.utils.auth.OAuthUtils;
 import me.occucard.view.adapter.DrawerAdapter;
 import me.occucard.view.fragment.MyCards;
@@ -48,7 +49,11 @@ public class HomeActivity extends ActionBarActivity {
         //Set up drawer menu
         //Drawer logout
         TextView logout = (TextView) findViewById(R.id.drawer_logout);
-        logout.setOnClickListener(new DrawerLogoutClickListener());
+        if(OccucardTokenCache.getInstance().hasToken())
+            logout.setText("Logout");
+        else
+            logout.setText("Login");
+        logout.setOnClickListener(new DrawerLoginLogoutClickListener());
 
         //Drawer list
         String[] drawerItems = getResources().getStringArray(R.array.drawer_items);
@@ -137,12 +142,15 @@ public class HomeActivity extends ActionBarActivity {
         }
     }
 
-    private class DrawerLogoutClickListener implements View.OnClickListener{
+    private class DrawerLoginLogoutClickListener implements View.OnClickListener{
         @Override
         public void onClick(View view) {
             HomeActivity activity = HomeActivity.this;
-            OAuthUtils.logout(activity);
-            Toast.makeText(activity, "Logged you out.", Toast.LENGTH_LONG);
+            if(OccucardTokenCache.getInstance().hasToken()){
+                OccucardTokenCache.getInstance().claarToken();
+                OAuthUtils.logout(activity);
+                Toast.makeText(activity, "Logged you out.", Toast.LENGTH_LONG);
+            }
             Intent intent = new Intent(activity, LoginActivity.class);
             activity.startActivity(intent);
             activity.finish();
