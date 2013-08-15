@@ -196,7 +196,7 @@ public class HomeActivity extends ActionBarActivity {
         @Override
         public void onDrawerClosed(View drawerView) {
             Fragment frag = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-            if(frag == null || !(frag instanceof MyCards)){
+            if(frag != null && frag instanceof MyCards){
                 HomeActivity.this.actionBarState = HomeActivity.MY_CARDS;
                 invalidateOptionsMenu();
             }
@@ -204,12 +204,15 @@ public class HomeActivity extends ActionBarActivity {
 
         @Override
         public void onDrawerSlide(View drawerView, float slideOffset) {
+            Fragment frag = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
             if(slideOffset > previousOffset && actionBarState == HomeActivity.MY_CARDS){
                 actionBarState = HomeActivity.NONE;
                 invalidateOptionsMenu();
             }else if(previousOffset > slideOffset && slideOffset < 0.5f && actionBarState == HomeActivity.NONE){
-                actionBarState = HomeActivity.MY_CARDS;
-                invalidateOptionsMenu();
+                if(frag != null && frag instanceof MyCards){
+                    actionBarState = HomeActivity.MY_CARDS;
+                    invalidateOptionsMenu();
+                }
             }
             previousOffset = slideOffset;
         }
