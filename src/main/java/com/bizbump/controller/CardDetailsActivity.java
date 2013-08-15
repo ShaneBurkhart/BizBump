@@ -41,6 +41,8 @@ public class CardDetailsActivity extends ActionBarActivity {
         }
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.logo);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
     }
 

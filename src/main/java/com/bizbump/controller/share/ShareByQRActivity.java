@@ -29,6 +29,8 @@ public class ShareByQRActivity extends ActionBarActivity {
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new ShareByQR()).commit();
         }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setIcon(com.bizbump.R.drawable.logo);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     @Override

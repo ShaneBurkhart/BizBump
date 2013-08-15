@@ -30,7 +30,8 @@ public class FindByBluetoothActivity extends ActionBarActivity{
         }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        setTitle("Find By Bluetooth");
+        getSupportActionBar().setIcon(com.bizbump.R.drawable.logo);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     @Override

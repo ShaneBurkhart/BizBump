@@ -49,7 +49,7 @@ public class CardDetails extends Fragment {
             thumbnail.setImageBitmap(b);
         }
 
-        activity.setTitle(card.getFullName());
+        activity.getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         return v;
     }

@@ -29,7 +29,8 @@ public class FindByEmailActivity extends ActionBarActivity {
         }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        setTitle("Find By Email");
+        getSupportActionBar().setIcon(com.bizbump.R.drawable.logo);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     @Override

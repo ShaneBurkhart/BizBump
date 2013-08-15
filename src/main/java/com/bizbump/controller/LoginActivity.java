@@ -58,7 +58,8 @@ public class LoginActivity extends ActionBarActivity {
         lv.setAdapter(new ArrayAdapter<String>(this, R.layout.simple_list_item_1, R.id.text1, aStrings));
         lv.setOnItemClickListener(new AccountSelectionListener());
 
-        setTitle("Login");
+        getSupportActionBar().setIcon(com.bizbump.R.drawable.logo);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     private class AccountSelectionListener implements AdapterView.OnItemClickListener{

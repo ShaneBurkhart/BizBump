@@ -40,7 +40,7 @@ public class Find extends Fragment {
         activity.actionBarState = HomeActivity.NONE;
         activity.supportInvalidateOptionsMenu();
 
-        activity.setTitle("Find");
+        activity.getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         return v;
     }

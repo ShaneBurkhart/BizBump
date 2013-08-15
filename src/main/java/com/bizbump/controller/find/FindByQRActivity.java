@@ -36,7 +36,8 @@ public class FindByQRActivity extends ActionBarActivity {
         IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.initiateScan(IntentIntegrator.QR_CODE_TYPES);
 
-        setTitle("Find By QR Code");
+        getSupportActionBar().setIcon(com.bizbump.R.drawable.logo);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     @Override

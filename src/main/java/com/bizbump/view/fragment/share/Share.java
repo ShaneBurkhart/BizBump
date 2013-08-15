@@ -41,7 +41,7 @@ public class Share extends Fragment {
         activity.actionBarState = HomeActivity.NONE;
         activity.supportInvalidateOptionsMenu();
 
-        activity.setTitle("Share");
+        activity.getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         return v;
     }

@@ -30,6 +30,8 @@ public class ShareByEmailActivity extends ActionBarActivity {
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new ShareByEmail()).commit();
         }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setIcon(com.bizbump.R.drawable.logo);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.bizbump.controller;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -54,7 +56,7 @@ public class HomeActivity extends ActionBarActivity {
         drawerList.setAdapter(new DrawerAdapter(this, drawerItems));
         drawerList.setOnItemClickListener(new DrawerItemClickListener());
 
-        drawerToggle = new ActionBarDrawerToggle(this, drawer, R.drawable.ic_navigation_drawer, R.drawable.ic_navigation_drawer, R.drawable.ic_navigation_drawer);
+        drawerToggle = new DrawerSlidingListener(this, drawer);
         drawer.setDrawerListener(drawerToggle);
 
         drawerList.setItemChecked(0, true);
@@ -62,7 +64,7 @@ public class HomeActivity extends ActionBarActivity {
         showInitialView();
 
         getSupportActionBar().setIcon(R.drawable.logo);
-        getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     public void showInitialView(){
@@ -176,5 +178,41 @@ public class HomeActivity extends ActionBarActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    private class DrawerSlidingListener extends ActionBarDrawerToggle{
+
+        float previousOffset = 0f;
+
+        public DrawerSlidingListener(Activity context, DrawerLayout drawer){
+            super(context, drawer, R.drawable.ic_navigation_drawer, R.drawable.ic_navigation_drawer, R.drawable.ic_navigation_drawer);
+        }
+
+        @Override
+        public void onDrawerOpened(View drawerView) {
+            HomeActivity.this.actionBarState = HomeActivity.NONE;
+            invalidateOptionsMenu();
+        }
+
+        @Override
+        public void onDrawerClosed(View drawerView) {
+            Fragment frag = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+            if(frag == null || !(frag instanceof MyCards)){
+                HomeActivity.this.actionBarState = HomeActivity.MY_CARDS;
+                invalidateOptionsMenu();
+            }
+        }
+
+        @Override
+        public void onDrawerSlide(View drawerView, float slideOffset) {
+            if(slideOffset > previousOffset && actionBarState == HomeActivity.MY_CARDS){
+                actionBarState = HomeActivity.NONE;
+                invalidateOptionsMenu();
+            }else if(previousOffset > slideOffset && slideOffset < 0.5f && actionBarState == HomeActivity.NONE){
+                actionBarState = HomeActivity.MY_CARDS;
+                invalidateOptionsMenu();
+            }
+            previousOffset = slideOffset;
+        }
     }
 }
