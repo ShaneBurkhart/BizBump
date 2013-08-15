@@ -1,6 +1,5 @@
 package me.occucard.controller;
 
-import android.R;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.accounts.AccountManagerCallback;
@@ -21,6 +20,7 @@ import com.google.android.gms.auth.GoogleAuthUtil;
 
 import java.io.IOException;
 
+import me.occucard.R;
 import me.occucard.utils.auth.AcquireTokenTask;
 import me.occucard.utils.auth.OAuthUtils;
 
@@ -50,14 +50,15 @@ public class LoginActivity extends ActionBarActivity {
             }
         }
 
-        ListView lv = new ListView(this);
-        setContentView(lv);
+        setContentView(R.layout.select_account);
+
+        ListView lv = (ListView) findViewById(R.id.account_list);
 
         String[] aStrings = new String[accounts.length];
         for(int i = 0 ; i < aStrings.length ; i ++)
-            aStrings[i] = accounts[i].type + " - " + accounts[i].name;
+            aStrings[i] = accounts[i].name;
 
-        lv.setAdapter(new ArrayAdapter<String>(this, R.layout.simple_list_item_1, R.id.text1, aStrings));
+        lv.setAdapter(new ArrayAdapter<String>(this, R.layout.account_item, aStrings));
         lv.setOnItemClickListener(new AccountSelectionListener());
 
         getSupportActionBar().setIcon(me.occucard.R.drawable.logo);
