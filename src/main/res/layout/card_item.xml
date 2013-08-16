@@ -1,172 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:background="@drawable/card_background"
-              android:padding="10dp"
-              android:layout_marginLeft="@dimen/activity_horizontal_margin"
-              android:layout_marginRight="@dimen/activity_horizontal_margin">
+              android:background="@color/dark_grey">
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="8dp"
+            android:layout_height="91dp"
             android:orientation="horizontal"
-            android:layout_gravity="top">
+            android:layout_alignParentLeft="true"
+            android:background="@color/teal"
+            android:id="@+id/accent_tab"/>
 
-        <LinearLayout
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_marginRight="5dp"
-                android:orientation="vertical"
-                android:gravity="center">
+    <LinearLayout
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_toRightOf="@id/accent_tab"
+            android:id="@+id/avatar">
 
-            <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/thumbnail"
-                    android:visibility="gone"/>
-
-            <ProgressBar
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/thumbnail_progress"/>
-
-        </LinearLayout>
-
-        <LinearLayout
+        <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:id="@+id/thumbnail"
+                android:visibility="gone"/>
 
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/name"
-                    android:text="John Doe"
-                    android:textSize="20dp"/>
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/phone_number"
-                    android:text="999-999-9999"
-                    android:textSize="17dp"/>
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/email"
-                    android:text="email@domain.com"
-                    android:textSize="15dp"/>
-
-        </LinearLayout>
+        <ProgressBar
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/thumbnail_progress"/>
 
     </LinearLayout>
 
     <LinearLayout
-            android:id="@+id/hidden_stuff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:layout_toRightOf="@id/avatar"
+            android:layout_centerVertical="true">
 
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#ffcccccc"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                />
 
-        <LinearLayout
-                android:layout_width="match_parent"
+        <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:id="@+id/socials">
+                android:id="@+id/name"
+                android:text="John Doe"
+                android:textSize="24dp"
+                android:textColor="@color/white"/>
 
-           <!-- <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/linkedin_256"/>
-
-            <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/facebook_256"/>
-
-            <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/twitter_256"/>
-
-            <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/google_256"/>!-->
-
-
-        </LinearLayout>
-
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#ffcccccc"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                />
-
-        <LinearLayout
-                android:id="@+id/controls"
-                android:layout_width="match_parent"
+        <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="100">
-
-            <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Call"
-                    android:background="@android:color/transparent"
-                    android:layout_margin="0dp"
-                    android:padding="0dp"
-                    android:layout_weight="25"
-                    />
-
-            <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Email"
-                    android:background="@android:color/transparent"
-                    android:layout_margin="0dp"
-                    android:padding="0dp"
-                    android:layout_weight="25"
-                    />
-
-            <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Text"
-                    android:background="@android:color/transparent"
-                    android:layout_margin="0dp"
-                    android:padding="0dp"
-                    android:layout_weight="25"
-                    />
-
-            <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Share"
-                    android:background="@android:color/transparent"
-                    android:layout_margin="0dp"
-                    android:padding="0dp"
-                    android:layout_weight="25"
-                    />
-
-        </LinearLayout>
+                android:id="@+id/email"
+                android:text="email@domain.com"
+                android:textSize="15dp"
+                android:textColor="@color/lighter_grey"/>
 
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

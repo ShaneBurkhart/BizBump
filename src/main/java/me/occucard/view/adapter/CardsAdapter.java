@@ -25,6 +25,15 @@ import me.occucard.utils.GravatarUtils;
  */
 public class CardsAdapter extends BaseAdapter {
 
+    public static final int[] colors = new int[]{
+      R.color.green,
+      R.color.teal,
+      R.color.yellow,
+      R.color.purple,
+      R.color.blue,
+      R.color.red
+    };
+
     public static final int SEPERATOR = 0;
     public static final int CARD = 1;
     private static final int COUNT = CARD + 1;
@@ -122,8 +131,11 @@ public class CardsAdapter extends BaseAdapter {
         //Get The Views
         TextView email = (TextView) v.findViewById(R.id.email);
         TextView name = (TextView) v.findViewById(R.id.name);
-        TextView phone_number = (TextView) v.findViewById(R.id.phone_number);
         ImageView thumbnail = (ImageView) v.findViewById(R.id.thumbnail);
+        View accent = v.findViewById(R.id.accent_tab);
+
+        int pos = (Character.toLowerCase(card.firstName.charAt(0)) - 'a') % colors.length;
+        accent.setBackgroundColor(context.getResources().getColor(colors[pos]));
 
         LinearLayout social_container = (LinearLayout) v.findViewById(R.id.socials);
 
@@ -144,7 +156,6 @@ public class CardsAdapter extends BaseAdapter {
         //Set text
         email.setText(card.getEmail());
         name.setText(card.getFullName());
-        phone_number.setText(card.getPhoneNumber());
 
         //Check for social networks
     }

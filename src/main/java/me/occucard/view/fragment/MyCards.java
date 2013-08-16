@@ -34,8 +34,6 @@ public class MyCards extends ListFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         //Set divider
-        this.getListView().setDivider(new ColorDrawable(Color.TRANSPARENT));
-        this.getListView().setDividerHeight(10);
         CardInputListener listener = new CardInputListener();
         this.getListView().setOnItemClickListener(listener);
         this.getListView().setOnItemLongClickListener(listener);

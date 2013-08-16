@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="app_background">#ffdddddd</color>
 
-    <color name="action_background">#ff0595ff</color>
-    <color name="action_border">#ff0075c8</color>
-    <color name="action_text">#ffffffff</color>
+    <color name="black">#ff000000</color>
+    <color name="darker_grey">#ff2f2f2f</color>
+    <color name="dark_grey">#ff5d5d5d</color>
+    <color name="grey">#ff6d6d6d</color>
+    <color name="light_grey">#ff777777</color>
+    <color name="lighter_grey">#ffcccccc</color>
+    <color name="white">#ffffffff</color>
 
-    <color name="card_background">#fff5f5f5</color>
-    <color name="card_border">#ffaaaaaa</color>
-
-    <color name="drawer_background">#ff00598c</color>
-
-    <color name="dark_gray">#ff888888</color>
+    <color name="green">#ff2ecc71</color>
+    <color name="teal">#ff00e2b0</color>
+    <color name="yellow">#fff1c40f</color>
+    <color name="purple">#ff9b59b6</color>
+    <color name="blue">#ff3498db</color>
+    <color name="red">#ffe74c3c</color>
 
 </resources>
