@@ -10,14 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
 import com.google.android.gms.auth.GoogleAuthUtil;
 
 import me.occucard.R;
-import me.occucard.utils.auth.AcquireTokenTask;
 import me.occucard.utils.auth.OAuthUtils;
 
 /**
@@ -32,7 +30,7 @@ public class SelectAccount extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.select_account, null);
+        View v = inflater.inflate(R.layout.account_email, null);
 
         am = OAuthUtils.getManager(getActivity());
         accounts = am.getAccountsByType(GoogleAuthUtil.GOOGLE_ACCOUNT_TYPE);

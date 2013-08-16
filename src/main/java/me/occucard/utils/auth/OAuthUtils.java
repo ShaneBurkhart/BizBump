@@ -34,10 +34,10 @@ public class OAuthUtils {
         }
     }
 
-    public static void saveLoggedInAccount(Context context, String accountName){
+    public static void saveLoggedInAccount(Context context, String occucardToken){
         try{
             FileOutputStream fos = context.openFileOutput(FILENAME, Context.MODE_PRIVATE);
-            fos.write(accountName.getBytes());
+            fos.write(occucardToken.getBytes());
             fos.close();
         } catch (IOException e){}
     }

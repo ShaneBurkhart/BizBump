@@ -16,6 +16,7 @@ import android.widget.ListView;
 import com.google.android.gms.auth.GoogleAuthUtil;
 
 import me.occucard.R;
+import me.occucard.utils.auth.AcquireTokenTask;
 import me.occucard.utils.auth.OAuthUtils;
 
 /**
@@ -37,6 +38,8 @@ public class SelectPassword extends Fragment {
 
         v.findViewById(R.id.choose_password).setOnClickListener(new SelectAccountListener());
 
+        password = (EditText) v.findViewById(R.id.account_password);
+
         ActionBarActivity activity = (ActionBarActivity) getActivity();
 
         activity.getSupportActionBar().setIcon(R.drawable.logo);
@@ -45,21 +48,16 @@ public class SelectPassword extends Fragment {
         return v;
     }
 
-    private class AccountSelectionListener implements AdapterView.OnItemClickListener{
-        @Override
-        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-        }
-    }
-
     private class SelectAccountListener implements View.OnClickListener{
         @Override
         public void onClick(View view) {
-
+            String pass = password.getText().toString();
+            if(!pass.equals(""))
+                startTokenTask(email, pass);
         }
     }
 
-    private void goToPasswordScreen(String email){
-        //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new );
+    private void startTokenTask(String email, String password){
+        new AcquireTokenTask(getActivity()).execute(email, password);
     }
 }
