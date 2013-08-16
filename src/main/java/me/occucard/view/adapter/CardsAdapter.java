@@ -127,10 +127,11 @@ public class CardsAdapter extends BaseAdapter {
 
         LinearLayout social_container = (LinearLayout) v.findViewById(R.id.socials);
 
-        Bitmap b = MemoryCache.getInstance().get(GravatarUtils.getGravatarURL(card.getEmail()));
+        showLoading(thumbnail);
+        Bitmap b = MemoryCache.getInstance().get(context, GravatarUtils.getGravatarURL(card.getEmail()));
         if(b == null){
             if(ConnectionUtils.hasInternet(context))
-                new BitmapDownloaderTask(thumbnail).execute(card.getEmail());
+                new BitmapDownloaderTask(context, thumbnail).execute(card.getEmail());
             else{
                 thumbnail.setImageDrawable(context.getResources().getDrawable(R.drawable.mystery_man));
                 showThumbnail(thumbnail);
@@ -152,5 +153,11 @@ public class CardsAdapter extends BaseAdapter {
         LinearLayout parent = (LinearLayout) thumbnail.getParent();
         parent.findViewById(R.id.thumbnail_progress).setVisibility(View.GONE);
         thumbnail.setVisibility(View.VISIBLE);
+    }
+
+    private void showLoading(ImageView thumbnail){
+        thumbnail.setVisibility(View.GONE);
+        LinearLayout parent = (LinearLayout) thumbnail.getParent();
+        parent.findViewById(R.id.thumbnail_progress).setVisibility(View.VISIBLE);
     }
 }
