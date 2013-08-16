@@ -1,5 +1,6 @@
 package me.occucard.storage.cache;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;
 
@@ -41,7 +42,14 @@ public class MemoryCache{
             cache.put(url, bit);
     }
 
-    public Bitmap get(String url){
-        return cache.get(url);
+    public Bitmap get(Context context, String url){
+        Bitmap b = cache.get(url);
+        if(b != null)
+            return b;
+        if(FileCache.hasBitmap(context, url)){
+            b = FileCache.getBitmap(context, url);
+            this.add(url, b);
+        }
+        return b;
     }
 }

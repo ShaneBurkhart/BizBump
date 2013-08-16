@@ -1,5 +1,6 @@
 package me.occucard.storage.async;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
@@ -19,6 +20,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import me.occucard.R;
+import me.occucard.storage.cache.FileCache;
 import me.occucard.storage.cache.MemoryCache;
 import me.occucard.utils.GravatarUtils;
 
@@ -30,10 +32,12 @@ public class BitmapDownloaderTask extends AsyncTask<String, Void, Bitmap> {
     private ImageView thumbnail;
     private String url;
     private Handler handler;
+    private Context context;
 
-    public BitmapDownloaderTask(ImageView thumbnail) {
+    public BitmapDownloaderTask(Context context, ImageView thumbnail) {
         this.thumbnail = thumbnail;
         this.handler = new Handler();
+        this.context = context;
     }
 
     @Override
@@ -72,6 +76,7 @@ public class BitmapDownloaderTask extends AsyncTask<String, Void, Bitmap> {
             Bitmap image = bitmap;
             if(image != null){
                 MemoryCache.getInstance().add(this.url, image);
+                FileCache.saveBitmap(context, url, bitmap);
             } else {
                 //TODO Some default image
             }

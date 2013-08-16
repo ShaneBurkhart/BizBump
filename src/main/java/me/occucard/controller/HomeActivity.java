@@ -131,7 +131,7 @@ public class HomeActivity extends ActionBarActivity {
                 if(OccucardTokenCache.getInstance().hasToken())
                     new DownloadCardsTask(this).execute(OccucardTokenCache.getInstance().getToken());//Pass token
                 else
-                    DefaultDialog.create(HomeActivity.this, "Not Logged In", "You need to log in to refresh your contacts.");
+                    DefaultDialog.create(HomeActivity.this, "Not Logged In", "You need to log in to refresh your contacts.").show();
                 return true;
         }
         return super.onOptionsItemSelected(item);

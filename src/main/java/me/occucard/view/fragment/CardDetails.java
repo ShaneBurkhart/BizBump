@@ -40,10 +40,10 @@ public class CardDetails extends Fragment {
         name.setText(card.getFullName());
         phone.setText(card.getPhoneNumber());
 
-        Bitmap b = MemoryCache.getInstance().get(GravatarUtils.getGravatarURL(card.getEmail()));
+        Bitmap b = MemoryCache.getInstance().get(getActivity(), GravatarUtils.getGravatarURL(card.getEmail()));
         if(b == null){
             if(ConnectionUtils.hasInternet(getActivity()))
-                new BitmapDownloaderTask(thumbnail).execute(card.getEmail());
+                new BitmapDownloaderTask(getActivity(), thumbnail).execute(card.getEmail());
             else{
                 thumbnail.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.mystery_man));
                 showThumbnail(thumbnail);
