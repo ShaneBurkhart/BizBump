@@ -2,6 +2,10 @@ package me.occucard.storage.async;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Shader;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.util.Log;
@@ -21,13 +25,13 @@ import me.occucard.utils.GravatarUtils;
 /**
  * Created by Shane on 8/5/13.
  */
-public class BitmapDownloader extends AsyncTask<String, Void, Bitmap> {
+public class BitmapDownloaderTask extends AsyncTask<String, Void, Bitmap> {
 
     private ImageView thumbnail;
     private String url;
     private Handler handler;
 
-    public BitmapDownloader(ImageView thumbnail) {
+    public BitmapDownloaderTask(ImageView thumbnail) {
         this.thumbnail = thumbnail;
         this.handler = new Handler();
     }
@@ -44,11 +48,22 @@ public class BitmapDownloader extends AsyncTask<String, Void, Bitmap> {
             InputStream input = urlConnection.getInputStream();
             Bitmap b = BitmapFactory.decodeStream(input);
             input.close();
-            return b;
+            return makeBitmapCircle(b);
         } catch (IOException e){
             Log.d("Error", e.getMessage());
             return null;
         }
+    }
+
+    private Bitmap makeBitmapCircle(Bitmap b){
+        Bitmap circleBitmap = Bitmap.createBitmap(b.getWidth(), b.getHeight(), Bitmap.Config.ARGB_8888);
+        BitmapShader shader = new BitmapShader (b, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+        Paint paint = new Paint();
+        paint.setShader(shader);
+        Canvas c = new Canvas(circleBitmap);
+        c.drawCircle(b.getWidth()/2, b.getHeight()/2, b.getWidth()/2, paint);
+        b.recycle();
+        return  circleBitmap;
     }
 
     @Override

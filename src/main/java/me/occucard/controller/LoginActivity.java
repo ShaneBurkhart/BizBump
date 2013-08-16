@@ -20,7 +20,6 @@ public class LoginActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.general_container);
 
-
         OAuthUtils.deleteLoggedInAccount(this);
         //Check for logged in
         String accountToken = OAuthUtils.getLoggedInAccount(this);

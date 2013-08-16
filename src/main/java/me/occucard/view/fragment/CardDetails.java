@@ -13,7 +13,7 @@ import android.widget.TextView;
 import me.occucard.R;
 import me.occucard.controller.CardDetailsActivity;
 import me.occucard.model.Card;
-import me.occucard.storage.async.BitmapDownloader;
+import me.occucard.storage.async.BitmapDownloaderTask;
 import me.occucard.storage.cache.MemoryCache;
 import me.occucard.utils.ConnectionUtils;
 import me.occucard.utils.GravatarUtils;
@@ -43,7 +43,7 @@ public class CardDetails extends Fragment {
         Bitmap b = MemoryCache.getInstance().get(GravatarUtils.getGravatarURL(card.getEmail()));
         if(b == null){
             if(ConnectionUtils.hasInternet(getActivity()))
-                new BitmapDownloader(thumbnail).execute(card.getEmail());
+                new BitmapDownloaderTask(thumbnail).execute(card.getEmail());
             else{
                 thumbnail.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.mystery_man));
                 showThumbnail(thumbnail);

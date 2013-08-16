@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 import me.occucard.controller.HomeActivity;
 import me.occucard.controller.LoginActivity;
+import me.occucard.storage.cache.OccucardTokenCache;
 import me.occucard.utils.ConnectionUtils;
 import me.occucard.utils.URLUtils;
 
@@ -49,12 +50,12 @@ public class AcquireTokenTask extends AsyncTask<String, Void, String> {
             JSONObject json = URLUtils.getResponseBodyJSON(response);
             if(response.getStatusLine().getStatusCode() == 200){
                 //Success
-
+                occucardToken = "Some Token";
             }else{
                 //Error
+                occucardToken = "Some Token";
             }
         }
-
         return occucardToken;
     }
 
@@ -72,8 +73,10 @@ public class AcquireTokenTask extends AsyncTask<String, Void, String> {
         if(s == null || s.equals("")){
             Toast.makeText(context, "No Good", Toast.LENGTH_LONG).show();
         }else{
+            OccucardTokenCache.getInstance().setToken(s);
             Toast.makeText(context, "Good", Toast.LENGTH_LONG).show();
         }
+        redirect();
         super.onPostExecute(s);
     }
 

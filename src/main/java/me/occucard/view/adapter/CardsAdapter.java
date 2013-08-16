@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 import me.occucard.R;
 import me.occucard.model.Card;
-import me.occucard.storage.async.BitmapDownloader;
+import me.occucard.storage.async.BitmapDownloaderTask;
 import me.occucard.storage.cache.MemoryCache;
 import me.occucard.utils.CardUtils;
 import me.occucard.utils.ConnectionUtils;
@@ -130,7 +130,7 @@ public class CardsAdapter extends BaseAdapter {
         Bitmap b = MemoryCache.getInstance().get(GravatarUtils.getGravatarURL(card.getEmail()));
         if(b == null){
             if(ConnectionUtils.hasInternet(context))
-                new BitmapDownloader(thumbnail).execute(card.getEmail());
+                new BitmapDownloaderTask(thumbnail).execute(card.getEmail());
             else{
                 thumbnail.setImageDrawable(context.getResources().getDrawable(R.drawable.mystery_man));
                 showThumbnail(thumbnail);
