@@ -10,12 +10,12 @@
     <item android:id="@+id/action_email"
           android:icon="@drawable/content_email"
           android:title="Email"
-          bizbump:showAsAction="always" />
+          bizbump:showAsAction="never" />
 
     <item android:id="@+id/action_text"
           android:icon="@drawable/action_text"
-          android:title="Email"
-          bizbump:showAsAction="ifRoom" />
+          android:title="Text"
+          bizbump:showAsAction="never" />
 
     <!--<item android:id="@+id/action_share"
           android:icon="@drawable/social_share"
