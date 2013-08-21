@@ -3,12 +3,15 @@ package me.occucard.view.fragment;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import me.occucard.R;
 import me.occucard.controller.CardDetailsActivity;
@@ -17,6 +20,8 @@ import me.occucard.storage.async.BitmapDownloaderTask;
 import me.occucard.storage.cache.MemoryCache;
 import me.occucard.utils.ConnectionUtils;
 import me.occucard.utils.GravatarUtils;
+import me.occucard.view.adapter.CardDetail;
+import me.occucard.view.adapter.CardDetailsAdapter;
 
 /**
  * Created by Shane on 8/8/13.
@@ -30,15 +35,12 @@ public class CardDetails extends Fragment {
         CardDetailsActivity activity = (CardDetailsActivity) getActivity();
         Card card = activity.card;
 
-        TextView email = (TextView) v.findViewById(R.id.email);
-        TextView phone = (TextView) v.findViewById(R.id.phone_number);
         TextView name = (TextView) v.findViewById(R.id.name);
+        name.setText(card.getFullName());
 
         ImageView thumbnail = (ImageView) v.findViewById(R.id.thumbnail);
 
-        email.setText(card.getEmail());
-        name.setText(card.getFullName());
-        phone.setText(card.getPhoneNumber());
+        addDetails(card, (LinearLayout) v.findViewById(R.id.details_container));
 
         Bitmap b = MemoryCache.getInstance().get(getActivity(), GravatarUtils.getGravatarURL(card.getEmail()));
         if(b == null){
@@ -56,6 +58,13 @@ public class CardDetails extends Fragment {
         activity.getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         return v;
+    }
+
+    private void addDetails(Card card, LinearLayout container){
+        ArrayList<CardDetail> details = new ArrayList<CardDetail>();
+        details.add(new CardDetail("Phone Number", card.phoneNumber));
+        details.add(new CardDetail("Email", card.email));
+        new CardDetailsAdapter(getActivity(), container).setDetails(details);
     }
 
     @Override

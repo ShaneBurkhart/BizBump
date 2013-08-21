@@ -41,7 +41,7 @@ public class SelectAccount extends Fragment {
         for(int i = 0 ; i < aStrings.length ; i ++)
             aStrings[i] = accounts[i].name;
 
-        lv.setAdapter(new ArrayAdapter<String>(getActivity(), R.layout.account_item, aStrings));
+        lv.setAdapter(new ArrayAdapter<String>(getActivity(), R.layout.account_item, R.id.account_name, aStrings));
         lv.setOnItemClickListener(new AccountSelectionListener());
 
         v.findViewById(R.id.choose_email).setOnClickListener(new SelectAccountListener());

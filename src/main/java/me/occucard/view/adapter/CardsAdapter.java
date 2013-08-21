@@ -2,6 +2,7 @@ package me.occucard.view.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,11 +28,8 @@ public class CardsAdapter extends BaseAdapter {
 
     public static final int[] colors = new int[]{
       R.color.green,
-      R.color.teal,
       R.color.yellow,
-      R.color.purple,
-      R.color.blue,
-      R.color.red
+      R.color.blue
     };
 
     public static final int SEPERATOR = 0;
@@ -136,8 +134,6 @@ public class CardsAdapter extends BaseAdapter {
 
         int pos = (Character.toLowerCase(card.firstName.charAt(0)) - 'a') % colors.length;
         accent.setBackgroundColor(context.getResources().getColor(colors[pos]));
-
-        LinearLayout social_container = (LinearLayout) v.findViewById(R.id.socials);
 
         showLoading(thumbnail);
         Bitmap b = MemoryCache.getInstance().get(context, GravatarUtils.getGravatarURL(card.getEmail()));

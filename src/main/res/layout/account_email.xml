@@ -3,7 +3,8 @@
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/dark_grey">
 
     <LinearLayout
             android:id="@+id/button_container"
@@ -27,7 +28,7 @@
             android:text="Choose Email"
             android:gravity="center"
             android:layout_marginBottom="5dp"
-            android:background="#ff555555"
+            android:background="@color/blue"
             android:textColor="@android:color/white"/>
 
     </LinearLayout>
@@ -48,7 +49,7 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:textStyle="bold"
-                android:textColor="#444"/>
+                android:textColor="@color/lighter_grey"/>
 
         <EditText
                 android:id="@+id/account_email"
@@ -56,7 +57,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:hint="Email"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textEmailAddress"
+                android:textColor="@color/white"
+                android:textColorHint="@color/lighter_grey"/>
 
         <TextView
                 android:layout_width="match_parent"
@@ -67,7 +70,7 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:textStyle="bold"
-                android:textColor="#444"/>
+                android:textColor="@color/lighter_grey"/>
 
         <TextView
                 android:layout_width="match_parent"
@@ -78,7 +81,7 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:textStyle="bold"
-                android:textColor="#444"/>
+                android:textColor="@color/lighter_grey"/>
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -89,11 +92,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/account_list"
-                android:clipToPadding="false"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:scrollbarStyle="outsideInset"
-                android:background="@android:color/white"/>
+                android:background="@color/grey"
+                android:divider="@color/light_grey"
+                android:dividerHeight="1px"/>
 
     </LinearLayout>
 

@@ -29,10 +29,6 @@ public class LoginActivity extends ActionBarActivity {
             finish();
         }
 
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
-
-
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SelectAccount()).commit();
     }
 
