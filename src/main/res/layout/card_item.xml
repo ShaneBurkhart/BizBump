@@ -30,7 +30,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/thumbnail"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                android:antialias="true"/>
 
         <ProgressBar
                 android:layout_width="50dp"

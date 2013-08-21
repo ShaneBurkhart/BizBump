@@ -16,4 +16,7 @@
         <item name="background">@color/darker_grey</item>
     </style>
 
+    <style name="Button" parent="android:Widget.Button">
+
+    </style>
 </resources>

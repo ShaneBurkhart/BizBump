@@ -35,7 +35,8 @@
                     android:id="@+id/thumbnail"
                     android:visibility="gone"
                     android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"/>
+                    android:scaleType="fitCenter"
+                    android:antialias="true"/>
 
             <ProgressBar
                     android:layout_width="75dp"
