@@ -1,23 +1,15 @@
 package me.occucard.view.fragment;
 
-import android.accounts.Account;
-import android.accounts.AccountManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
-
-import com.google.android.gms.auth.GoogleAuthUtil;
 
 import me.occucard.R;
-import me.occucard.utils.auth.AcquireTokenTask;
-import me.occucard.utils.auth.OAuthUtils;
+import me.occucard.storage.async.AcquireTokenTask;
 
 /**
  * Created by Shane on 8/15/13.

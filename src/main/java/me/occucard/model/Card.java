@@ -2,6 +2,7 @@ package me.occucard.model;
 
 import android.content.Context;
 
+import org.apache.http.HttpResponse;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,6 +14,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+
+import me.occucard.utils.URLUtils;
 
 /**
  * Created by Shane on 8/5/13.
@@ -30,23 +33,6 @@ public class Card {
     }
 
 // Statics
-
-    static Card[] cards = new Card[] {
-            new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
-            new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
-            new Card("Shane", "Burkhart", "shaneburkht@gmail.com", "417-209-2813"),
-            new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
-            new Card("Ryan", "Endacott", "rzendacott@gmail.com", "417-209-2813"),
-            new Card("Daniel", "Holmgren", "dansdebate@gmail.com", "417-209-2813"),
-            new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
-            new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
-            new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
-            new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
-            new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
-            new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
-            new Card("a", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813"),
-            new Card("Shane", "Burkhart", "shaneburkhart@gmail.com", "417-209-2813")
-    };
 
     public static ArrayList<Object> all(Context context){
         try{
@@ -86,12 +72,18 @@ public class Card {
     // Not thread safe
     public static void getCardFromAPI(Context context, String token){
         try{
-            FileOutputStream fos = context.openFileOutput(FILENAME, Context.MODE_PRIVATE);
-            fos.write(Card.cardsToJSON(cards).toString().getBytes());
-            fos.close();
-        } catch (IOException e){
-            //Failed
-        }
+            HttpResponse response = URLUtils.getContactsGETResponse(token);
+            if(response != null){
+                try {
+                    JSONArray cards = new JSONArray(URLUtils.getResponseBodyString(response));
+                    JSONObject o = new JSONObject();
+                    o.put("cards", cards);
+                    FileOutputStream fos = context.openFileOutput(FILENAME, Context.MODE_PRIVATE);
+                    fos.write(o.toString().getBytes());
+                    fos.close();
+                } catch (JSONException e){}
+            }
+        } catch (IOException e){}
     }
 
 // Getters and Setters

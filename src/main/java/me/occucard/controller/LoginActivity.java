@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
 import me.occucard.R;
+import me.occucard.storage.cache.OccucardTokenCache;
 import me.occucard.utils.auth.OAuthUtils;
 import me.occucard.view.fragment.SelectAccount;
 import me.occucard.view.fragment.SelectPassword;
@@ -20,10 +21,10 @@ public class LoginActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.general_container);
 
-        OAuthUtils.deleteLoggedInAccount(this);
         //Check for logged in
         String accountToken = OAuthUtils.getLoggedInAccount(this);
         if(accountToken != null){
+            OccucardTokenCache.getInstance().setToken(accountToken);
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
             finish();

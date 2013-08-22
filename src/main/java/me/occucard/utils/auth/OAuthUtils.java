@@ -17,9 +17,6 @@ public class OAuthUtils {
 
     private static final String FILENAME = "user_account";
 
-    private static String token = null;
-    private static String account_type = null;
-
     public static String getLoggedInAccount(Context context){
         try{
             FileInputStream is = context.openFileInput(FILENAME);
