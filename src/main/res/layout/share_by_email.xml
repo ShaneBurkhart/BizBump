@@ -13,18 +13,39 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal">
 
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter An Email"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/lighter_grey"/>
+
+
         <EditText
                 android:id="@+id/share_email_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textEmailAddress"
+                android:textColor="@color/white"
+                android:textColorHint="@color/lighter_grey"/>
 
         <Button
-                android:id="@+id/share_send_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Send Business Card"/>
+            android:id="@+id/share_send_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="7dp"
+            android:text="Send Card"
+            android:gravity="center"
+            android:layout_marginBottom="5dp"
+            android:background="@color/blue"
+            android:textColor="@android:color/white"/>
 
     </LinearLayout>
 

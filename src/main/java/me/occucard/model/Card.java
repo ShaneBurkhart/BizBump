@@ -22,6 +22,7 @@ import me.occucard.utils.URLUtils;
  */
 public class Card {
     public static final String FILENAME = "contacts";
+    public static final String MY_PROFILE_FILENAME = "my_profile";
 
     public String firstName, lastName, email, phoneNumber;
 
@@ -33,6 +34,28 @@ public class Card {
     }
 
 // Statics
+
+    public static Card getMyProfile(Context context){
+        try{
+            FileInputStream is = context.openFileInput(MY_PROFILE_FILENAME);
+            BufferedReader r = new BufferedReader(new InputStreamReader(is));
+            StringBuilder total = new StringBuilder();
+            String line;
+            while ((line = r.readLine()) != null)
+                total.append(line);
+             return Card.parseCard(new JSONObject(total.toString()));
+        }catch (IOException e){
+        }catch (JSONException e){}
+        return null;
+    }
+
+    public static void saveMyProfile(Context context, Card card){
+        try{
+            FileOutputStream fos = context.openFileOutput(MY_PROFILE_FILENAME, Context.MODE_PRIVATE);
+            fos.write(card.toJSON().getBytes());
+            fos.close();
+        } catch (IOException e){}
+    }
 
     public static ArrayList<Object> all(Context context){
         try{
@@ -63,11 +86,6 @@ public class Card {
         File file = new File(dir, FILENAME);
         return file.delete();
     }
-    public static boolean hasCardStorage(Context context){
-        File dir = context.getFilesDir();
-        File file = new File(dir, FILENAME);
-        return  file.exists();
-    }
 
     // Not thread safe
     public static void getCardFromAPI(Context context, String token){
@@ -88,40 +106,12 @@ public class Card {
 
 // Getters and Setters
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
     public String getFullName(){
         return firstName + " " + lastName;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     //Formats

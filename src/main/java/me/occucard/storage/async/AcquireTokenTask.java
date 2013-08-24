@@ -47,8 +47,10 @@ public class AcquireTokenTask extends AsyncTask<String, Void, String> {
         String password = strings[1];
         String occucardToken = null;
 
-        if(!ConnectionUtils.hasInternet(context))
+        if(!ConnectionUtils.hasInternet(context)){
+            error = "No internet connection.";
             return occucardToken;
+        }
 
         HttpResponse response = null;
         if(email != null && password != null)
@@ -59,7 +61,7 @@ public class AcquireTokenTask extends AsyncTask<String, Void, String> {
                 Log.d("Register Response", json.toString());
                 try {
                     if(response.getStatusLine().getStatusCode() == 200)
-                        occucardToken = json.getString(URLUtils.USER_TOKEN_KEY);
+                        occucardToken = json.getString("token");
                     else
                         error = "Invalid email or password.";
                 } catch (JSONException e){}
@@ -80,11 +82,13 @@ public class AcquireTokenTask extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String s) {
         dialog.dismiss();
         if(s != null && !s.equals("")){
+            Log.d("Register", "token success");
             OAuthUtils.saveLoggedInAccount(context, s);
             OccucardTokenCache.getInstance().setToken(s);
             Toast.makeText(context, "Succesfuly logged in.", Toast.LENGTH_LONG).show();
             redirect();
         }else{
+            Log.d("Register", "token null");
             Toast.makeText(context, error, Toast.LENGTH_LONG).show();
         }
         super.onPostExecute(s);

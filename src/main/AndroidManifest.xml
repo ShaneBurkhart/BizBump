@@ -32,6 +32,7 @@
         <activity android:name=".controller.find.FindByEmailActivity" android:screenOrientation="portrait"/>
         <activity android:name=".controller.find.FindByQRActivity" android:screenOrientation="portrait"/>
         <activity android:name=".controller.find.FindByBluetoothActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".controller.MyProfileActivity" android:screenOrientation="portrait"/>
 
     </application>
 

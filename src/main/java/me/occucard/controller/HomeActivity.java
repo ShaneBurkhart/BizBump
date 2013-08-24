@@ -56,6 +56,7 @@ public class HomeActivity extends ActionBarActivity {
         else
             logout.setText("Login");
         logout.setOnClickListener(new DrawerLoginLogoutClickListener());
+        ((TextView) findViewById(R.id.drawer_my_profile)).setOnClickListener(new DrawerMyProfileClickListener());
 
         //Drawer list
         String[] drawerItems = getResources().getStringArray(R.array.drawer_items);
@@ -165,6 +166,14 @@ public class HomeActivity extends ActionBarActivity {
             Intent intent = new Intent(activity, LoginActivity.class);
             activity.startActivity(intent);
             activity.finish();
+        }
+    }
+
+    private class DrawerMyProfileClickListener implements View.OnClickListener{
+        @Override
+        public void onClick(View view) {
+            Intent i = new Intent(HomeActivity.this, MyProfileActivity.class);
+            HomeActivity.this.startActivity(i);
         }
     }
 
