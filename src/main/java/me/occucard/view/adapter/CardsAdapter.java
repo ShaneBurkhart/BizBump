@@ -132,7 +132,10 @@ public class CardsAdapter extends BaseAdapter {
         ImageView thumbnail = (ImageView) v.findViewById(R.id.thumbnail);
         View accent = v.findViewById(R.id.accent_tab);
 
-        int pos = (Character.toLowerCase(card.firstName.charAt(0)) - 'a') % colors.length;
+        char c = 'a';
+        if(card.firstName.length() > 0)
+            c = card.firstName.charAt(0);
+        int pos = (Character.toLowerCase(c - 'a')) % colors.length;
         accent.setBackgroundColor(context.getResources().getColor(colors[pos]));
 
         showLoading(thumbnail);

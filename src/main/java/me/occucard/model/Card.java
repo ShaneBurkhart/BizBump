@@ -1,6 +1,7 @@
 package me.occucard.model;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.apache.http.HttpResponse;
 import org.json.JSONArray;
@@ -93,7 +94,9 @@ public class Card {
             HttpResponse response = URLUtils.getContactsGETResponse(token);
             if(response != null){
                 try {
-                    JSONArray cards = new JSONArray(URLUtils.getResponseBodyString(response));
+                    String res = URLUtils.getResponseBodyString(response);
+                    Log.d("Card Response", res);
+                    JSONArray cards = new JSONArray(res);
                     JSONObject o = new JSONObject();
                     o.put("cards", cards);
                     FileOutputStream fos = context.openFileOutput(FILENAME, Context.MODE_PRIVATE);
@@ -169,10 +172,6 @@ public class Card {
     }
 
     public static Card parseCard(JSONObject card){
-        try{
-            return new Card(card.getString("first_name"), card.getString("last_name"), card.getString("email"), card.getString("phone_number"));
-        }catch (JSONException e){
-            return null;
-        }
+        return new Card(card.optString("first_name"), card.optString("last_name"), card.optString("email"), card.optString("phone_number"));
     }
 }

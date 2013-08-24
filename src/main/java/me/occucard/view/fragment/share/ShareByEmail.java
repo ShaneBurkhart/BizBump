@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import me.occucard.R;
+import me.occucard.storage.async.FindByEmailTask;
 
 /**
  * Created by Shane on 8/12/13.
@@ -30,8 +31,9 @@ public class ShareByEmail extends Fragment {
     public class EmailSendClickListener implements View.OnClickListener{
         @Override
         public void onClick(View view) {
-            String emsil = emailText.getText().toString();
-            //Send email to api
+            String e = emailText.getText().toString();
+            FindByEmailTask task = new FindByEmailTask(getActivity());
+            task.execute(e);
         }
     }
 }

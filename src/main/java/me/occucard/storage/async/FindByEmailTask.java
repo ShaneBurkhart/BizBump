@@ -1,11 +1,16 @@
 package me.occucard.storage.async;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
-import me.occucard.controller.HomeActivity;
+import org.apache.http.HttpResponse;
+
 import me.occucard.model.Card;
+import me.occucard.storage.cache.OccucardTokenCache;
 import me.occucard.utils.ConnectionUtils;
+import me.occucard.utils.URLUtils;
 import me.occucard.view.dialog.DefaultDialog;
 
 /**
@@ -14,42 +19,47 @@ import me.occucard.view.dialog.DefaultDialog;
 public class FindByEmailTask extends AsyncTask<String, Void, String>{
 
     ProgressDialog dialog;
-    HomeActivity context;
+    Context context;
 
-    public FindByEmailTask(HomeActivity context){
+    public FindByEmailTask(Context context){
         this.context = context;
     }
 
     @Override
     protected String doInBackground(String... strings) {
-        Card.getCardFromAPI(context, strings[0]);
+        String email = null;
+        if(strings.length < 1)
+            return null;
+        HttpResponse response = URLUtils.getFindByEmailPOSTResponse(OccucardTokenCache.getInstance().getToken(), strings[0]);
+        if(response != null){
+            //No need for this at the moment
+            //JSONObject object = URLUtils.getResponseBodyJSON(response);
+            if(response.getStatusLine().getStatusCode() == 200){
+                Card.getCardFromAPI(context, OccucardTokenCache.getInstance().getToken());
+            }
+        }
         return null;
     }
 
     @Override
     protected void onPreExecute() {
         if(!ConnectionUtils.hasInternet(context)){
-            DefaultDialog.create(context, "No Connection", "We can not get your cards due to lack of connection.").show();
+            DefaultDialog.create(context, "No Connection", "We can not find anyone without an internet connectino.").show();
             return;
         }
         dialog = new ProgressDialog(this.context);
-        dialog.setMessage("Getting your contacts.");
+        dialog.setMessage("Finding contacts.");
         dialog.show();
         super.onPreExecute();
     }
 
     @Override
     protected void onPostExecute(String s) {
-        if(!isCancelled()){
-            if(dialog != null)
-                dialog.dismiss();
-            context.showInitialView();
+        dialog.dismiss();
+        if(s == null || s.equals("")){
+            Toast.makeText(context, "Couldn't find user with that email.", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(context, "Found user!", Toast.LENGTH_LONG).show();
         }
-        super.onPostExecute(s);
-    }
-
-    @Override
-    protected void onProgressUpdate(Void... values) {
-        super.onProgressUpdate(values);
     }
 }
