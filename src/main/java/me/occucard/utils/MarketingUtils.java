@@ -11,5 +11,4 @@ public class MarketingUtils {
     public static String getSMSText(String name){
         return name + " has invited you to join " + APP_NAME + ". Download in the google play app store. " + APP_URL;
     }
-
 }

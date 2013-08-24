@@ -135,7 +135,7 @@ public class CardsAdapter extends BaseAdapter {
         char c = 'a';
         if(card.firstName.length() > 0)
             c = card.firstName.charAt(0);
-        int pos = (Character.toLowerCase(c - 'a')) % colors.length;
+        int pos = (Character.toLowerCase(c) - 'a') % colors.length;
         accent.setBackgroundColor(context.getResources().getColor(colors[pos]));
 
         showLoading(thumbnail);

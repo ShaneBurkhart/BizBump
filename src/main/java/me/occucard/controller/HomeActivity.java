@@ -28,6 +28,7 @@ import me.occucard.utils.auth.OAuthUtils;
 import me.occucard.view.adapter.DrawerAdapter;
 import me.occucard.view.dialog.DefaultDialog;
 import me.occucard.view.fragment.MyCards;
+import me.occucard.view.fragment.MyProfile;
 import me.occucard.view.fragment.Settings;
 import me.occucard.view.fragment.find.Find;
 import me.occucard.view.fragment.share.Share;
@@ -81,7 +82,13 @@ public class HomeActivity extends ActionBarActivity {
         //Check if container exists
         if(findViewById(R.id.fragment_container) != null){
             //Now add some fragment.
-            //Return if already opened or something like that.
+            Fragment frag;
+            Card me = Card.getMyProfile(this);
+            if(me == null || me.firstName == null || me.firstName.equals("")){
+                Toast.makeText(this, "You should fill out your profile.", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this, MyProfileActivity.class);
+                startActivity(intent);
+            }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyCards()).commit();
         }
     }

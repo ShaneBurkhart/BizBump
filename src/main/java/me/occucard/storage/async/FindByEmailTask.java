@@ -1,5 +1,6 @@
 package me.occucard.storage.async;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -63,6 +64,7 @@ public class FindByEmailTask extends AsyncTask<String, Void, String>{
             Toast.makeText(context, "Couldn't find user with that email.", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(context, "Found user!", Toast.LENGTH_LONG).show();
+            ((Activity) context).finish();
         }
     }
 }

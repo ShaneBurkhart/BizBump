@@ -53,6 +53,12 @@ public class Card {
         return null;
     }
 
+    public static void deleteMyProfile(Context ccontext){
+        File f = new File(ccontext.getFilesDir(), MY_PROFILE_FILENAME);
+        if(f.exists())
+            f.delete();
+    }
+
     public static void saveMyProfile(Context context, Card card){
         try{
             FileOutputStream fos = context.openFileOutput(MY_PROFILE_FILENAME, Context.MODE_PRIVATE);
@@ -86,6 +92,7 @@ public class Card {
     }
 
     public static boolean eraseCardStorage(Context context){
+        Card.deleteMyProfile(context);
         File dir = context.getFilesDir();
         File file = new File(dir, FILENAME);
         return file.delete();
