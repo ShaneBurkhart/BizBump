@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/dark_grey">
+
+
+    <LinearLayout
+            android:id="@+id/button_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/dark_grey"/>
+
+        <Button
+            android:id="@+id/update_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="7dp"
+            android:text="Update Profile"
+            android:gravity="center"
+            android:layout_marginBottom="5dp"
+            android:background="@color/blue"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_alignParentTop="true"
+            android:id="@+id/thumb_container">
+
+        <EditText
+                android:id="@+id/name"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:hint="Name"
+                android:inputType="textPersonName"
+                android:textColor="@color/white"
+                android:textColorHint="@color/lighter_grey"/>
+
+        <LinearLayout
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="8dp">
+
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/thumbnail"
+                    android:visibility="gone"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:antialias="true"/>
+
+            <ProgressBar
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:id="@+id/thumbnail_progress"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/details_container"
+        android:orientation="vertical"
+        android:layout_gravity="top"
+        android:layout_below="@id/thumb_container">
+
+    </LinearLayout>
+
+</RelativeLayout>

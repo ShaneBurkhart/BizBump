@@ -26,7 +26,7 @@ import me.occucard.view.fragment.MyProfile;
 /**
  * Created by Shane on 8/14/13.
  */
-public class UpdateProfileTask extends AsyncTask<Void, Void, Card> {
+public class UpdateProfileTask extends AsyncTask<Card, Void, Card> {
 
     private MyProfile frag;
     private ProgressDialog dialog;
@@ -40,18 +40,23 @@ public class UpdateProfileTask extends AsyncTask<Void, Void, Card> {
     }
 
     @Override
-    protected Card doInBackground(Void... strings) {
+    protected Card doInBackground(Card... input) {
         Card card = null;
 
         if(!ConnectionUtils.hasInternet(frag.getActivity()))
             return card;
 
         HttpResponse response = null;
-        if(OccucardTokenCache.getInstance().hasToken())
-            response = URLUtils.getMyProfilePOSTResponse(OccucardTokenCache.getInstance().getToken());
+        if(OccucardTokenCache.getInstance().hasToken()){
+            if(input.length > 0)
+                response = URLUtils.getUpdatePofilePOSTResponse(OccucardTokenCache.getInstance().getToken(), input[0]);
+            else
+                response = URLUtils.getMyProfilePOSTResponse(OccucardTokenCache.getInstance().getToken());
+        }
         if(response != null){
             JSONObject json = URLUtils.getResponseBodyJSON(response);
             if(json != null){
+                Log.d("JSON Output", json.toString());
                 if(response.getStatusLine().getStatusCode() == 200)
                     card = Card.parseCard(json);
                 else

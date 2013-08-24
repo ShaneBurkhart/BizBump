@@ -25,7 +25,10 @@ public class Card {
     public static final String FILENAME = "contacts";
     public static final String MY_PROFILE_FILENAME = "my_profile";
 
-    public String firstName, lastName, email, phoneNumber;
+    public String firstName;
+    public String lastName;
+    public String email;
+    public String phoneNumber;
 
     public Card(String firstName, String lastName, String email, String phoneNumber) {
         this.firstName = firstName;
@@ -122,9 +125,9 @@ public class Card {
         JSONObject obj = new JSONObject();
         try{
             obj.put("email", this.email);
-            obj.put("phone_number", this.phoneNumber);
-            obj.put("first_name", this.firstName);
-            obj.put("last_name", this.lastName);
+            obj.put("phoneNumber", this.phoneNumber);
+            obj.put("firstName", this.firstName);
+            obj.put("lastName", this.lastName);
             return obj;
         }catch (JSONException e){
             return obj;
@@ -172,6 +175,6 @@ public class Card {
     }
 
     public static Card parseCard(JSONObject card){
-        return new Card(card.optString("first_name"), card.optString("last_name"), card.optString("email"), card.optString("phone_number"));
+        return new Card(card.optString("firstName"), card.optString("lastName"), card.optString("email"), card.optString("phoneNumber"));
     }
 }

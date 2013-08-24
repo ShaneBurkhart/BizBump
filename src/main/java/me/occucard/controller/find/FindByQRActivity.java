@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import me.occucard.R;
 import me.occucard.libs.zxing.IntentIntegrator;
 import me.occucard.libs.zxing.IntentResult;
+import me.occucard.storage.async.FindByEmailTask;
 
 /**
  * Created by Shane on 8/12/13.
@@ -44,9 +45,10 @@ public class FindByQRActivity extends ActionBarActivity {
         IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         if (scanResult != null) {
             String contents = scanResult.getContents();
-            if(contents != null)
+            if(contents != null){
                 Log.d("Scan Result", contents);
-            else
+                new FindByEmailTask(this).execute(contents);
+            } else
                 finish();
         }else
             finish();

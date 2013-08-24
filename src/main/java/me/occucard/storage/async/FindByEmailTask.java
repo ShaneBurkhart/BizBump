@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
+import org.json.JSONObject;
 
 import me.occucard.model.Card;
 import me.occucard.storage.cache.OccucardTokenCache;
@@ -33,10 +34,12 @@ public class FindByEmailTask extends AsyncTask<String, Void, String>{
         HttpResponse response = URLUtils.getFindByEmailPOSTResponse(OccucardTokenCache.getInstance().getToken(), strings[0]);
         if(response != null){
             //No need for this at the moment
-            //JSONObject object = URLUtils.getResponseBodyJSON(response);
+            JSONObject object = URLUtils.getResponseBodyJSON(response);
             if(response.getStatusLine().getStatusCode() == 200){
                 Card.getCardFromAPI(context, OccucardTokenCache.getInstance().getToken());
             }
+            // Shits and gigs
+            return object.toString();
         }
         return null;
     }

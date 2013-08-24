@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -32,19 +33,21 @@ import me.occucard.view.dialog.DefaultDialog;
  */
 public class MyProfile extends Fragment {
 
+    Card me = null;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.card_details, container, false);
+        View v = inflater.inflate(R.layout.my_profile, container, false);
 
-        Card card = Card.getMyProfile(getActivity());
-        if(card == null && (!ConnectionUtils.hasInternet(getActivity()) || !OccucardTokenCache.getInstance().hasToken())){
+        me = Card.getMyProfile(getActivity());
+        if(me == null && (!ConnectionUtils.hasInternet(getActivity()) || !OccucardTokenCache.getInstance().hasToken())){
             handleProfileNotFoundError();
             return v;
         }
-        if(card == null)
+        if(me == null)
             new UpdateProfileTask(this).execute();
         else
-            setCard(card, v);
+            setCard(me, v);
 
         ((ActionBarActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -52,7 +55,8 @@ public class MyProfile extends Fragment {
     }
 
     public void setCard(Card card, View v){
-        TextView name = (TextView) v.findViewById(R.id.name);
+        (v.findViewById(R.id.update_profile)).setOnClickListener(new UpdateProfileClickListener());
+        EditText name = (EditText) v.findViewById(R.id.name);
         name.setText(card.getFullName());
 
         ImageView thumbnail = (ImageView) v.findViewById(R.id.thumbnail);
@@ -99,5 +103,15 @@ public class MyProfile extends Fragment {
         LinearLayout parent = (LinearLayout) thumbnail.getParent();
         parent.findViewById(R.id.thumbnail_progress).setVisibility(View.GONE);
         thumbnail.setVisibility(View.VISIBLE);
+    }
+
+    private class UpdateProfileClickListener implements View.OnClickListener{
+        @Override
+        public void onClick(View view) {
+            if(me == null)
+                me = new Card("", "", "", "");
+            me.firstName = ((EditText) getView().findViewById(R.id.name)).getText().toString().trim();
+            new UpdateProfileTask(MyProfile.this).execute(me);
+        }
     }
 }

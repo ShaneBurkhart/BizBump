@@ -15,6 +15,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import me.occucard.model.Card;
+
 /**
  * Created by Shane on 8/15/13.
  */
@@ -81,6 +83,31 @@ public class URLUtils {
             object.put(USER_TOKEN_KEY, token);
             object.put(API_TOKEN_KEY, API_TOKEN);
             object.put("email", email);
+            httppost.setHeader("Content-Type", "application/json");
+            httppost.setEntity(new StringEntity(object.toString()));
+            // Execute HTTP Post Request
+            response = httpclient.execute(httppost);
+        }catch (IOException e){
+            Log.d("Register Response", e.getMessage());
+        }catch (JSONException e){
+            Log.d("Register Response", e.getMessage());
+        }
+        return response;
+    }
+
+
+    public static HttpResponse getUpdatePofilePOSTResponse(String token, Card c) {
+        // Create a new HttpClient and Post Header
+        HttpClient httpclient = new DefaultHttpClient();
+        HttpPost httppost = new HttpPost(BASE_URL + UPDATE_PROFILE_SUFFIX_URL);
+        HttpResponse response = null;
+        try{
+            //Get JSON
+            JSONObject object = new JSONObject();
+            object.put(USER_TOKEN_KEY, token);
+            object.put(API_TOKEN_KEY, API_TOKEN);
+            object.put("user", c.toJSONObject());
+            Log.d("JSON To Send", object.toString());
             httppost.setHeader("Content-Type", "application/json");
             httppost.setEntity(new StringEntity(object.toString()));
             // Execute HTTP Post Request

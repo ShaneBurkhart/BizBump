@@ -15,6 +15,7 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
 import me.occucard.R;
+import me.occucard.model.Card;
 import me.occucard.utils.QRCodeUtiils;
 
 /**
@@ -35,7 +36,11 @@ public class ShareByQR extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        String contents = "Shane Is Cool";
+        Card c = Card.getMyProfile(getActivity());
+        if(c == null)
+            return;
+        String contents = c.email;
+
         imageView.measure(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         // Change to value based on API
         int width = 512;
