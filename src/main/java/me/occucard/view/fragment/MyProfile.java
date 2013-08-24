@@ -24,8 +24,6 @@ import me.occucard.storage.cache.MemoryCache;
 import me.occucard.storage.cache.OccucardTokenCache;
 import me.occucard.utils.ConnectionUtils;
 import me.occucard.utils.GravatarUtils;
-import me.occucard.view.adapter.CardDetail;
-import me.occucard.view.adapter.CardDetailsAdapter;
 import me.occucard.view.dialog.DefaultDialog;
 
 /**
@@ -34,6 +32,8 @@ import me.occucard.view.dialog.DefaultDialog;
 public class MyProfile extends Fragment {
 
     Card me = null;
+
+    EditText email, name, phoneNumber;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,12 +56,15 @@ public class MyProfile extends Fragment {
 
     public void setCard(Card card, View v){
         (v.findViewById(R.id.update_profile)).setOnClickListener(new UpdateProfileClickListener());
-        EditText name = (EditText) v.findViewById(R.id.name);
+        name = (EditText) v.findViewById(R.id.name);
+        email = (EditText) v.findViewById(R.id.email);
+        phoneNumber = (EditText) v.findViewById(R.id.phone_number);
+
         name.setText(card.getFullName());
+        email.setText(card.email);
+        phoneNumber.setText(card.phoneNumber);
 
         ImageView thumbnail = (ImageView) v.findViewById(R.id.thumbnail);
-
-        addDetails(card, (LinearLayout) v.findViewById(R.id.details_container));
 
         Bitmap b = MemoryCache.getInstance().get(getActivity(), GravatarUtils.getGravatarURL(card.getEmail()));
         if(b == null){
@@ -87,13 +90,6 @@ public class MyProfile extends Fragment {
         });
     }
 
-    private void addDetails(Card card, LinearLayout container){
-        ArrayList<CardDetail> details = new ArrayList<CardDetail>();
-        details.add(new CardDetail("Phone Number", card.phoneNumber));
-        details.add(new CardDetail("Email", card.email));
-        new CardDetailsAdapter(getActivity(), container).setDetails(details);
-    }
-
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -110,7 +106,17 @@ public class MyProfile extends Fragment {
         public void onClick(View view) {
             if(me == null)
                 me = new Card("", "", "", "");
-            me.firstName = ((EditText) getView().findViewById(R.id.name)).getText().toString().trim();
+
+            String fullName = name.getText().toString().trim();
+            if(fullName.contains(" ")){
+                String[] parts = fullName.split("\\s+", 1);
+                me.firstName = parts[0];
+                me.lastName = parts.length > 1 ? parts[1] : null;
+            }else
+                me.firstName = fullName;
+
+            me.phoneNumber = phoneNumber.getText().toString().trim();
+            me.email = email.getText().toString().trim();
             new UpdateProfileTask(MyProfile.this).execute(me);
         }
     }

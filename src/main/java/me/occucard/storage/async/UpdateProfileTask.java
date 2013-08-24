@@ -33,6 +33,7 @@ public class UpdateProfileTask extends AsyncTask<Card, Void, Card> {
     private Handler handler;
 
     private String error = "Server error. Please try again later.";
+    private boolean isUpdating = false;
 
     public UpdateProfileTask(Fragment frag){
         this.frag = (MyProfile) frag;
@@ -48,9 +49,10 @@ public class UpdateProfileTask extends AsyncTask<Card, Void, Card> {
 
         HttpResponse response = null;
         if(OccucardTokenCache.getInstance().hasToken()){
-            if(input.length > 0)
+            if(input.length > 0){
+                isUpdating = true;
                 response = URLUtils.getUpdatePofilePOSTResponse(OccucardTokenCache.getInstance().getToken(), input[0]);
-            else
+            }else
                 response = URLUtils.getMyProfilePOSTResponse(OccucardTokenCache.getInstance().getToken());
         }
         if(response != null){
@@ -59,8 +61,6 @@ public class UpdateProfileTask extends AsyncTask<Card, Void, Card> {
                 Log.d("JSON Output", json.toString());
                 if(response.getStatusLine().getStatusCode() == 200){
                     card = Card.parseCard(json);
-                    if(input.length > 0)
-                        Toast.makeText(frag.getActivity(), "Updated profile", Toast.LENGTH_LONG);
                 }else
                     error = "Profile not found.  Server could be temporarily unavailable.  Please try again later.";
             }
@@ -70,7 +70,8 @@ public class UpdateProfileTask extends AsyncTask<Card, Void, Card> {
 
     @Override
     protected void onPreExecute() {
-        dialog = new ProgressDialog(frag.getActivity());
+        if(dialog == null)
+            dialog = new ProgressDialog(frag.getActivity());
         dialog.setMessage("Getting your profile.");
         dialog.show();
         super.onPreExecute();
@@ -87,9 +88,14 @@ public class UpdateProfileTask extends AsyncTask<Card, Void, Card> {
                     frag.getActivity().finish();
                 }
             });
+            dial.show();
         }else{
             Card.saveMyProfile(frag.getActivity(), c);
             frag.setCard(c, frag.getView());
+            if(isUpdating){
+                frag.getActivity().finish();
+                Toast.makeText(frag.getActivity(), "Updated your profile", Toast.LENGTH_LONG).show();
+            }
         }
     }
 

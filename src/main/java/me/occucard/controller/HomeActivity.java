@@ -172,6 +172,7 @@ public class HomeActivity extends ActionBarActivity {
     private class DrawerMyProfileClickListener implements View.OnClickListener{
         @Override
         public void onClick(View view) {
+            drawer.closeDrawers();
             Intent i = new Intent(HomeActivity.this, MyProfileActivity.class);
             HomeActivity.this.startActivity(i);
         }

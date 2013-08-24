@@ -47,7 +47,7 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:hint="Name"
+                android:hint="Full Name"
                 android:inputType="textPersonName"
                 android:textColor="@color/white"
                 android:textColorHint="@color/lighter_grey"/>
@@ -85,6 +85,27 @@
         android:orientation="vertical"
         android:layout_gravity="top"
         android:layout_below="@id/thumb_container">
+
+         <EditText
+                android:id="@+id/email"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/white"
+                android:textColorHint="@color/lighter_grey"/>
+
+
+         <EditText
+                android:id="@+id/phone_number"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:hint="Phone Number"
+                android:phoneNumber="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/lighter_grey"/>
 
     </LinearLayout>
 

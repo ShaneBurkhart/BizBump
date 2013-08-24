@@ -6,7 +6,7 @@ package me.occucard.utils;
 public class MarketingUtils {
 
     public static final String APP_NAME = "OccuCard";
-    public static final String APP_URL = "https://play.google.com/store/apps/details?id=com.theplanviewer.donkka";
+    public static final String APP_URL = "https://play.google.com/store/apps/details?id=me.occucard";
 
     public static String getSMSText(String name){
         return name + " has invited you to join " + APP_NAME + ". Download in the google play app store. " + APP_URL;
