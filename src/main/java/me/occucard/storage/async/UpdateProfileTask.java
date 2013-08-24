@@ -57,9 +57,11 @@ public class UpdateProfileTask extends AsyncTask<Card, Void, Card> {
             JSONObject json = URLUtils.getResponseBodyJSON(response);
             if(json != null){
                 Log.d("JSON Output", json.toString());
-                if(response.getStatusLine().getStatusCode() == 200)
+                if(response.getStatusLine().getStatusCode() == 200){
                     card = Card.parseCard(json);
-                else
+                    if(input.length > 0)
+                        Toast.makeText(frag.getActivity(), "Updated profile", Toast.LENGTH_LONG);
+                }else
                     error = "Profile not found.  Server could be temporarily unavailable.  Please try again later.";
             }
         }
